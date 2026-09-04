@@ -1375,6 +1375,269 @@ content="#0F4C5C"
       line-height: 1.6;
     }
 
+    /* =====================================
+       COVERAGE DETAIL
+    ===================================== */
+    
+    .coverage-card-clickable {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.15s ease,
+                  box-shadow 0.15s ease;
+    }
+    
+    .coverage-card-clickable:active {
+      transform: scale(0.98);
+    }
+    
+    .coverage-arrow {
+      position: absolute;
+    
+      right: 12px;
+      bottom: 12px;
+    
+      font-size: 22px;
+    
+      color: #9ca3af;
+    }
+    
+    
+    /* SUMMARY */
+    
+    .coverage-detail-summary {
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 20px;
+    
+      padding: 22px 20px;
+    
+      text-align: center;
+    
+      margin-bottom: 24px;
+    
+      box-shadow:
+        0 4px 16px rgba(0,0,0,0.04);
+    
+    }
+    
+    
+    .coverage-detail-icon {
+    
+      width: 58px;
+      height: 58px;
+    
+      margin: 0 auto 12px;
+    
+      border-radius: 16px;
+    
+      background: #f3f4f6;
+    
+      display: flex;
+    
+      align-items: center;
+      justify-content: center;
+    
+      font-size: 28px;
+    
+    }
+    
+    
+    .coverage-detail-label {
+    
+      font-size: 13px;
+    
+      color: #6b7280;
+    
+      margin-bottom: 5px;
+    
+    }
+    
+    
+    .coverage-detail-amount {
+    
+      font-size: 30px;
+    
+      font-weight: 800;
+    
+      line-height: 1.2;
+    
+      color: #111827;
+    
+    }
+    
+    
+    .coverage-detail-unit {
+    
+      margin-top: 5px;
+    
+      font-size: 13px;
+    
+      color: #9ca3af;
+    
+    }
+    
+    
+    /* POLICY CARD */
+    
+    .coverage-policy-card {
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 18px;
+    
+      padding: 16px;
+    
+      margin-bottom: 12px;
+    
+      cursor: pointer;
+    
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+    
+    }
+    
+    
+    .coverage-policy-card:active {
+    
+      transform: scale(0.985);
+    
+    }
+    
+    
+    .coverage-policy-top {
+    
+      display: flex;
+    
+      align-items: center;
+    
+      gap: 12px;
+    
+    }
+    
+    
+    .coverage-policy-icon {
+    
+      width: 44px;
+      height: 44px;
+    
+      border-radius: 13px;
+    
+      background: #f3f4f6;
+    
+      display: flex;
+    
+      align-items: center;
+      justify-content: center;
+    
+      font-size: 21px;
+    
+      flex-shrink: 0;
+    
+    }
+    
+    
+    .coverage-policy-info {
+    
+      flex: 1;
+    
+      min-width: 0;
+    
+    }
+    
+    
+    .coverage-policy-name {
+    
+      font-size: 14px;
+    
+      font-weight: 700;
+    
+      color: #111827;
+    
+      overflow: hidden;
+    
+      text-overflow: ellipsis;
+    
+      white-space: nowrap;
+    
+    }
+    
+    
+    .coverage-policy-no {
+    
+      margin-top: 3px;
+    
+      font-size: 12px;
+    
+      color: #9ca3af;
+    
+    }
+    
+    
+    .coverage-policy-arrow {
+    
+      font-size: 24px;
+    
+      color: #9ca3af;
+    
+    }
+    
+    
+    .coverage-policy-divider {
+    
+      height: 1px;
+    
+      background: #f0f0f0;
+    
+      margin: 14px 0;
+    
+    }
+    
+    
+    .coverage-policy-bottom {
+    
+      display: flex;
+    
+      align-items: center;
+    
+      justify-content: space-between;
+    
+      gap: 10px;
+    
+      font-size: 12px;
+    
+      color: #6b7280;
+    
+    }
+    
+    
+    .coverage-policy-amount {
+    
+      font-size: 17px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+    }
+    
+    
+    .coverage-policy-amount span {
+    
+      font-size: 11px;
+    
+      font-weight: 500;
+    
+      color: #9ca3af;
+    
+      margin-left: 3px;
+    
+    }
   </style>
 
 </head>
@@ -1615,6 +1878,10 @@ content="#0F4C5C"
     let selectedPolicyId = null;
 
     let policyDetailReturnPage = 'policies';
+
+    let selectedCoverageTypeId = null;
+    let selectedCoverageName = '';
+    let selectedCoverageUnit = '';
 
 
     /* =========================================
@@ -2147,81 +2414,82 @@ content="#0F4C5C"
     }
 
 
-    function renderPage(
-      page
-    ) {
+    function renderPage(page) {
 
-      updateNavigation(
-        page
-      );
-
-
+      updateNavigation(page);
+    
       const container =
-        document.getElementById(
-          'pageContainer'
-        );
-
-
-      switch (
-        page
-      ) {
-
+        document.getElementById('pageContainer');
+    
+    
+      switch (page) {
+    
         case 'home':
-
+    
           container.innerHTML =
             renderHomePage();
-
+    
           break;
-
-
+    
+    
         case 'policies':
-
+    
           container.innerHTML =
             renderPoliciesPage();
-
+    
           break;
-
+    
+    
         case 'coverage':
-          
+    
           container.innerHTML =
             renderCoveragePage();
-          
+    
           break;
-
-
+    
+    
+        case 'coverage-detail':
+    
+          container.innerHTML =
+            renderCoverageDetailPage();
+    
+          break;
+    
+    
         case 'family':
-
+    
           container.innerHTML =
             renderFamilyPage();
-
+    
           break;
-
-
+    
+    
         case 'account':
-
+    
           container.innerHTML =
             renderAccountPage();
-
+    
           break;
-
+    
+    
         case 'policy-detail':
-
+    
           container.innerHTML =
             renderPolicyDetailPage();
-        
+    
           break;
-
-
+    
+    
         default:
-
+    
           container.innerHTML =
             renderHomePage();
-
+    
       }
-
-
+    
+    
       scrollToTop();
-
+    
     }
 
     function renderCoveragePage() {
@@ -2360,24 +2628,35 @@ content="#0F4C5C"
     
         html += `
     
-          <div class="coverage-card">
-    
+          <div
+            class="coverage-card coverage-card-clickable"
+            onclick="openCoverageDetail(
+              '${item.coverageTypeId || item.CoverageTypeID || ''}',
+              '${escapeHtml(name)}',
+              '${escapeHtml(unit)}'
+            )"
+          >
+          
             <div class="coverage-icon">
               ${icon}
             </div>
-    
+          
             <div class="coverage-name">
               ${name}
             </div>
-    
+          
             <div class="coverage-amount">
               ${formatNumber(amount)}
             </div>
-    
+          
             <div class="coverage-unit">
               ${unit}
             </div>
-    
+          
+            <div class="coverage-arrow">
+              ›
+            </div>
+          
           </div>
     
         `;
@@ -2400,6 +2679,298 @@ content="#0F4C5C"
               จำนวนความคุ้มครองที่แสดง
               เป็นข้อมูลจากกรมธรรม์
               ที่มีอยู่ในระบบ ANC เท่านั้น
+            </div>
+    
+          </div>
+    
+        </div>
+    
+      `;
+    
+    
+      return html;
+    }
+
+    function renderCoverageDetailPage() {
+
+      const coverageTypeId =
+        selectedCoverageTypeId;
+    
+    
+      const policies =
+        accountData?.policies || [];
+    
+    
+      /*
+       * เฉพาะกรมธรรม์ของเจ้าของบัญชี
+       * Family จะไม่แสดงในหน้านี้
+       */
+    
+      const ownPolicies =
+        policies.filter(policy => {
+    
+          return !String(
+            policy.FamilyMemberID || ''
+          ).trim();
+    
+        });
+    
+    
+      let totalAmount = 0;
+    
+      const coverageItems = [];
+    
+    
+      ownPolicies.forEach(policy => {
+    
+        const coverages =
+          policy.coverage || [];
+    
+    
+        coverages.forEach(coverage => {
+    
+          const currentCoverageTypeId =
+            coverage.CoverageTypeID ||
+            coverage.coverageTypeId ||
+            '';
+    
+    
+          if (
+            String(currentCoverageTypeId) !==
+            String(coverageTypeId)
+          ) {
+    
+            return;
+    
+          }
+    
+    
+          const status =
+            String(
+              coverage.Status || 'ACTIVE'
+            ).toUpperCase();
+    
+    
+          if (status &&
+              status !== 'ACTIVE') {
+    
+            return;
+    
+          }
+    
+    
+          const amount =
+            Number(
+              coverage.CoverageAmount || 0
+            );
+    
+    
+          totalAmount += amount;
+    
+    
+          coverageItems.push({
+    
+            policyId:
+              policy.PolicyID || '',
+    
+            policyNo:
+              policy.PolicyNo || '-',
+    
+            planName:
+              policy.PlanName || '-',
+    
+            policyType:
+              policy.PolicyType || '',
+    
+            amount:
+              amount,
+    
+            unit:
+              coverage.CoverageUnit ||
+              selectedCoverageUnit ||
+              'บาท'
+    
+          });
+    
+        });
+    
+      });
+    
+    
+      const unit =
+        selectedCoverageUnit ||
+        (coverageItems[0]?.unit || 'บาท');
+    
+    
+      let html = `
+    
+        <div class="page">
+    
+          <div class="page-header">
+    
+            <button
+              class="back-btn"
+              onclick="navigateTo('coverage')"
+            >
+              ←
+            </button>
+    
+            <div>
+    
+              <div class="page-title">
+                ${escapeHtml(
+                  selectedCoverageName ||
+                  'รายละเอียดความคุ้มครอง'
+                )}
+              </div>
+    
+              <div class="page-subtitle">
+                รายละเอียดจากกรมธรรม์ในระบบ ANC
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+          <div class="coverage-detail-summary">
+    
+            <div class="coverage-detail-icon">
+              🛡️
+            </div>
+    
+            <div class="coverage-detail-label">
+              ความคุ้มครองรวม
+            </div>
+    
+            <div class="coverage-detail-amount">
+              ${formatNumber(totalAmount)}
+            </div>
+    
+            <div class="coverage-detail-unit">
+              ${escapeHtml(unit)}
+            </div>
+    
+          </div>
+    
+    
+          <div class="section-title">
+            มาจากกรมธรรม์
+          </div>
+    
+      `;
+    
+    
+      if (!coverageItems.length) {
+    
+        html += `
+    
+          <div class="empty-card">
+    
+            <div class="empty-icon">
+              🛡️
+            </div>
+    
+            <div class="empty-title">
+              ยังไม่มีรายละเอียด
+            </div>
+    
+            <div class="empty-text">
+              ยังไม่มีข้อมูลความคุ้มครองส่วนนี้
+              ในกรมธรรม์ที่ ANC Life Planning ดูแล
+            </div>
+    
+          </div>
+    
+        `;
+    
+      } else {
+    
+        coverageItems.forEach(item => {
+    
+          html += `
+    
+            <div
+              class="coverage-policy-card"
+              onclick="openPolicyDetail(
+                '${escapeHtml(item.policyId)}',
+                'coverage-detail'
+              )"
+            >
+    
+              <div class="coverage-policy-top">
+    
+                <div class="coverage-policy-icon">
+                  🛡️
+                </div>
+    
+                <div class="coverage-policy-info">
+    
+                  <div class="coverage-policy-name">
+                    ${escapeHtml(
+                      item.planName
+                    )}
+                  </div>
+    
+                  <div class="coverage-policy-no">
+                    ${escapeHtml(
+                      item.policyNo
+                    )}
+                  </div>
+    
+                </div>
+    
+                <div class="coverage-policy-arrow">
+                  ›
+                </div>
+    
+              </div>
+    
+    
+              <div class="coverage-policy-divider"></div>
+    
+    
+              <div class="coverage-policy-bottom">
+    
+                <div>
+                  ความคุ้มครอง
+                </div>
+    
+                <div class="coverage-policy-amount">
+                  ${formatNumber(
+                    item.amount
+                  )}
+    
+                  <span>
+                    ${escapeHtml(
+                      item.unit
+                    )}
+                  </span>
+                </div>
+    
+              </div>
+    
+            </div>
+    
+          `;
+    
+        });
+    
+      }
+    
+    
+      html += `
+    
+          <div class="coverage-note">
+    
+            <div class="coverage-note-title">
+              💡 หมายเหตุ
+            </div>
+    
+            <div class="coverage-note-text">
+              ข้อมูลนี้เป็นยอดรวมจากกรมธรรม์
+              ที่ ANC Life Planning ดูแลและมีข้อมูล
+              อยู่ในระบบเท่านั้น
             </div>
     
           </div>
@@ -5208,6 +5779,26 @@ content="#0F4C5C"
 
       `;
 
+    }
+
+    function openCoverageDetail(
+      coverageTypeId,
+      coverageName,
+      unit
+    ) {
+    
+      selectedCoverageTypeId =
+        coverageTypeId;
+    
+      selectedCoverageName =
+        coverageName || '';
+    
+      selectedCoverageUnit =
+        unit || '';
+    
+    
+      navigateTo('coverage-detail');
+    
     }
 
 
