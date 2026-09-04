@@ -2495,7 +2495,9 @@ content="#0F4C5C"
     function renderCoveragePage() {
 
       const summary =
-        accountData?.coverageSummary || [];
+        Object.values(
+          accountData?.coverageSummary || {}
+        );
     
     
       if (!summary.length) {
@@ -2606,24 +2608,39 @@ content="#0F4C5C"
     
     
           <div class="coverage-grid">
+    
       `;
     
     
       summary.forEach(item => {
     
-        const amount =
-          Number(item.totalAmount || 0);
+        const coverageTypeId =
+          item.CoverageTypeID || '';
     
-        const unit =
-          item.unit || 'บาท';
-    
-        const icon =
-          item.icon || '🛡️';
     
         const name =
-          item.coverageName ||
-          item.name ||
+          item.CoverageName ||
           'ความคุ้มครอง';
+    
+    
+        const unit =
+          item.Unit ||
+          'บาท';
+    
+    
+        const amount =
+          Number(
+            item.CoverageAmount || 0
+          );
+    
+    
+        const icon =
+          item.Icon ||
+          '🛡️';
+    
+    
+        const hasCoverage =
+          item.HasCoverage === true;
     
     
         html += `
@@ -2631,32 +2648,36 @@ content="#0F4C5C"
           <div
             class="coverage-card coverage-card-clickable"
             onclick="openCoverageDetail(
-              '${item.coverageTypeId || item.CoverageTypeID || ''}',
+              '${escapeHtml(coverageTypeId)}',
               '${escapeHtml(name)}',
               '${escapeHtml(unit)}'
             )"
           >
-          
+    
             <div class="coverage-icon">
               ${icon}
             </div>
-          
+    
+    
             <div class="coverage-name">
-              ${name}
+              ${escapeHtml(name)}
             </div>
-          
+    
+    
             <div class="coverage-amount">
               ${formatNumber(amount)}
             </div>
-          
+    
+    
             <div class="coverage-unit">
-              ${unit}
+              ${escapeHtml(unit)}
             </div>
-          
+    
+    
             <div class="coverage-arrow">
               ›
             </div>
-          
+    
           </div>
     
         `;
