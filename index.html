@@ -1638,6 +1638,270 @@ content="#0F4C5C"
       margin-left: 3px;
     
     }
+
+    /* =====================================
+       ACCOUNT PAGE
+    ===================================== */
+    
+    .account-page {
+      padding-bottom: 20px;
+    }
+    
+    
+    /* HEADER */
+    
+    .account-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 20px;
+    
+      padding: 18px;
+    
+      margin-bottom: 24px;
+    
+      box-shadow:
+        0 4px 14px rgba(0,0,0,0.04);
+    }
+    
+    
+    .account-avatar {
+      width: 64px;
+      height: 64px;
+    
+      border-radius: 50%;
+    
+      object-fit: cover;
+    
+      flex-shrink: 0;
+    }
+    
+    
+    .account-avatar-default {
+    
+      display: flex;
+    
+      align-items: center;
+      justify-content: center;
+    
+      background: #f3f4f6;
+    
+      font-size: 30px;
+    }
+    
+    
+    .account-header-info {
+      min-width: 0;
+    }
+    
+    
+    .account-name {
+    
+      font-size: 18px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+      line-height: 1.3;
+    
+      word-break: break-word;
+    }
+    
+    
+    .account-status {
+    
+      margin-top: 5px;
+    
+      font-size: 12px;
+    
+      color: #16a34a;
+    
+      font-weight: 600;
+    }
+    
+    
+    /* CARD */
+    
+    .account-card {
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 18px;
+    
+      padding: 0 16px;
+    
+      margin-bottom: 22px;
+    }
+    
+    
+    .account-row {
+    
+      min-height: 58px;
+    
+      display: flex;
+    
+      align-items: center;
+    
+      justify-content: space-between;
+    
+      gap: 15px;
+    }
+    
+    
+    .account-row-label {
+    
+      font-size: 13px;
+    
+      color: #6b7280;
+    
+      flex-shrink: 0;
+    }
+    
+    
+    .account-row-value {
+    
+      font-size: 14px;
+    
+      font-weight: 700;
+    
+      color: #111827;
+    
+      text-align: right;
+    
+      word-break: break-word;
+    }
+    
+    
+    .account-divider {
+    
+      height: 1px;
+    
+      background: #f0f0f0;
+    }
+    
+    
+    /* ANC CARE */
+    
+    .anc-care-card {
+    
+      display: flex;
+    
+      align-items: flex-start;
+    
+      gap: 13px;
+    
+      padding: 16px 0;
+    }
+    
+    
+    .anc-care-icon {
+    
+      width: 44px;
+      height: 44px;
+    
+      border-radius: 13px;
+    
+      background: #f3f4f6;
+    
+      display: flex;
+    
+      align-items: center;
+      justify-content: center;
+    
+      font-size: 22px;
+    
+      flex-shrink: 0;
+    }
+    
+    
+    .anc-care-content {
+      flex: 1;
+    }
+    
+    
+    .anc-care-title {
+    
+      font-size: 15px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+      margin-bottom: 5px;
+    }
+    
+    
+    .anc-care-text {
+    
+      font-size: 12px;
+    
+      color: #6b7280;
+    
+      line-height: 1.6;
+    }
+    
+    
+    /* INFO BOX */
+    
+    .account-info-box {
+    
+      background: #eff6ff;
+    
+      border: 1px solid #bfdbfe;
+    
+      border-radius: 16px;
+    
+      padding: 15px;
+    
+      margin-bottom: 18px;
+    }
+    
+    
+    .account-info-title {
+    
+      font-size: 13px;
+    
+      font-weight: 800;
+    
+      color: #1e3a8a;
+    
+      margin-bottom: 5px;
+    }
+    
+    
+    .account-info-text {
+    
+      font-size: 12px;
+    
+      color: #475569;
+    
+      line-height: 1.6;
+    }
+    
+    
+    /* FOOTER */
+    
+    .account-footer-text {
+    
+      text-align: center;
+    
+      font-size: 11px;
+    
+      color: #9ca3af;
+    
+      line-height: 1.6;
+    
+      padding: 4px 20px 10px;
+    }
+    
   </style>
 
 </head>
@@ -5602,112 +5866,248 @@ content="#0F4C5C"
     }
 
 
-    /* =========================================
-       ACCOUNT
-    ========================================= */
-
     function renderAccountPage() {
 
       const customer =
         accountData?.customer ||
         {};
-
-
+    
+    
+      const displayName =
+        customer.DisplayName ||
+        (
+          (customer.FirstName || '') +
+          (
+            customer.FirstName &&
+            customer.LastName
+              ? ' '
+              : ''
+          ) +
+          (customer.LastName || '')
+        ) ||
+        'ผู้ใช้งาน';
+    
+    
+      const phone =
+        customer.Phone ||
+        '-';
+    
+    
+      const email =
+        customer.Email ||
+        '-';
+    
+    
+      const birthDate =
+        customer.BirthDate
+          ? formatDateDisplay(customer.BirthDate)
+          : '-';
+    
+    
+      const profileImage =
+        customer.ProfileImageURL ||
+        '';
+    
+    
       return `
-
-        <div class="section-title">
-
-          <span>
-            👤 บัญชีของฉัน
-          </span>
-
-        </div>
-
-
-        <div class="card">
-
-          <div class="policy-name">
-
-            ${escapeHtml(
-              customer.DisplayName ||
-              (
-                customer.FirstName ||
-                ''
-              ) +
-              (
-                customer.FirstName &&
-                customer.LastName
-                  ? ' '
-                  : ''
-              ) +
-              (
-                customer.LastName ||
-                ''
-              )
-            )}
-
-          </div>
-
-
-          <div
-            class="policy-no"
-            style="
-              margin-top:8px;
-            "
-          >
-
-            LINE Account เชื่อมต่อแล้ว
-
-          </div>
-
-
-          <div class="policy-footer">
-
-            <div>
-
-              <div class="mini-label">
-                เบอร์โทร
+    
+        <div class="account-page">
+    
+    
+          <!-- HEADER -->
+    
+          <div class="account-header">
+    
+            ${
+              profileImage
+                ? `
+                  <img
+                    class="account-avatar"
+                    src="${escapeHtml(profileImage)}"
+                    alt="Profile"
+                  >
+                `
+                : `
+                  <div class="account-avatar account-avatar-default">
+                    👤
+                  </div>
+                `
+            }
+    
+    
+            <div class="account-header-info">
+    
+              <div class="account-name">
+                ${escapeHtml(displayName)}
               </div>
-
-
-              <div class="mini-value">
-
-                ${escapeHtml(
-                  customer.Phone ||
-                  '-'
-                )}
-
+    
+              <div class="account-status">
+                ● LINE Account เชื่อมต่อแล้ว
               </div>
-
+    
             </div>
-
-
-            <div>
-
-              <div class="mini-label">
-                Email
-              </div>
-
-
-              <div class="mini-value">
-
-                ${escapeHtml(
-                  customer.Email ||
-                  '-'
-                )}
-
-              </div>
-
-            </div>
-
+    
           </div>
-
+    
+    
+          <!-- PERSONAL INFO -->
+    
+          <div class="section-title">
+    
+            <span>
+              ข้อมูลส่วนตัว
+            </span>
+    
+          </div>
+    
+    
+          <div class="account-card">
+    
+    
+            <div class="account-row">
+    
+              <div class="account-row-label">
+                📞 เบอร์โทร
+              </div>
+    
+              <div class="account-row-value">
+                ${escapeHtml(phone)}
+              </div>
+    
+            </div>
+    
+    
+            <div class="account-divider"></div>
+    
+    
+            <div class="account-row">
+    
+              <div class="account-row-label">
+                ✉️ Email
+              </div>
+    
+              <div class="account-row-value">
+                ${escapeHtml(email)}
+              </div>
+    
+            </div>
+    
+    
+            <div class="account-divider"></div>
+    
+    
+            <div class="account-row">
+    
+              <div class="account-row-label">
+                🎂 วันเกิด
+              </div>
+    
+              <div class="account-row-value">
+                ${escapeHtml(birthDate)}
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+          <!-- ANC INFO -->
+    
+          <div class="section-title">
+    
+            <span>
+              ข้อมูลการดูแล
+            </span>
+    
+          </div>
+    
+    
+          <div class="account-card">
+    
+    
+            <div class="anc-care-card">
+    
+              <div class="anc-care-icon">
+                🛡️
+              </div>
+    
+    
+              <div class="anc-care-content">
+    
+                <div class="anc-care-title">
+                  ANC Life Planning
+                </div>
+    
+                <div class="anc-care-text">
+                  ระบบจะแสดงเฉพาะข้อมูลกรมธรรม์
+                  ที่ ANC Life Planning ดูแล
+                  หรือมีข้อมูลอยู่ในระบบ
+                </div>
+    
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+          <!-- DATA STATUS -->
+    
+          <div class="account-info-box">
+    
+            <div class="account-info-title">
+              ℹ️ ข้อมูลในระบบ
+            </div>
+    
+            <div class="account-info-text">
+              การไม่มีข้อมูลในระบบ ANC
+              ไม่ได้หมายความว่าไม่มีกรมธรรม์
+              แต่หมายถึง ANC ยังไม่มีข้อมูล
+              หรือไม่ได้เป็นผู้ดูแลกรมธรรม์ฉบับนั้น
+            </div>
+    
+          </div>
+    
+    
+          <div class="account-footer-text">
+    
+            ข้อมูลนี้ใช้สำหรับการให้บริการและ
+            การวางแผนประกันของคุณกับ ANC Life Planning
+    
+          </div>
+    
+    
         </div>
-
+    
       `;
-
     }
 
+    function formatDateDisplay(value) {
+
+      if (!value) {
+        return '-';
+      }
+    
+    
+      const date =
+        new Date(value);
+    
+    
+      if (isNaN(date.getTime())) {
+        return String(value);
+      }
+    
+    
+      return date.toLocaleDateString(
+        'th-TH',
+        {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }
+      );
+    
+    }
 
     /* =========================================
        EVENTS
