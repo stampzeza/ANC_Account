@@ -1098,6 +1098,198 @@ content="#0F4C5C"
     
     }
 
+    /* ================================
+       COVERAGE PAGE
+    ================================ */
+    
+    .coverage-info-card {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    
+      padding: 18px;
+    
+      background: #f8fafc;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 16px;
+    
+      margin-bottom: 24px;
+    }
+    
+    .coverage-info-icon {
+      width: 48px;
+      height: 48px;
+    
+      border-radius: 14px;
+    
+      background: #eef2ff;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      font-size: 24px;
+    
+      flex-shrink: 0;
+    }
+    
+    .coverage-info-title {
+      font-size: 16px;
+      font-weight: 700;
+    
+      margin-bottom: 4px;
+    }
+    
+    .coverage-info-text {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+    
+    
+    .coverage-grid {
+      display: grid;
+    
+      grid-template-columns: repeat(2, 1fr);
+    
+      gap: 12px;
+    
+      margin-bottom: 20px;
+    }
+    
+    
+    .coverage-card {
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 16px;
+    
+      padding: 16px;
+    
+      min-height: 145px;
+    
+      box-sizing: border-box;
+    }
+    
+    
+    .coverage-icon {
+      width: 42px;
+      height: 42px;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    
+      border-radius: 12px;
+    
+      background: #f3f4f6;
+    
+      font-size: 22px;
+    
+      margin-bottom: 12px;
+    }
+    
+    
+    .coverage-name {
+      font-size: 13px;
+    
+      color: #6b7280;
+    
+      margin-bottom: 6px;
+    
+      line-height: 1.4;
+    }
+    
+    
+    .coverage-amount {
+      font-size: 21px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+      line-height: 1.2;
+    }
+    
+    
+    .coverage-unit {
+      font-size: 12px;
+    
+      color: #9ca3af;
+    
+      margin-top: 4px;
+    }
+    
+    
+    .coverage-note {
+      background: #fff7ed;
+    
+      border: 1px solid #fed7aa;
+    
+      border-radius: 16px;
+    
+      padding: 16px;
+    
+      margin-bottom: 24px;
+    }
+    
+    
+    .coverage-note-title {
+      font-size: 14px;
+    
+      font-weight: 700;
+    
+      margin-bottom: 5px;
+    }
+    
+    
+    .coverage-note-text {
+      font-size: 12px;
+    
+      color: #6b7280;
+    
+      line-height: 1.5;
+    }
+    
+    
+    /* EMPTY STATE */
+    
+    .empty-card {
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 20px;
+    
+      padding: 32px 20px;
+    
+      text-align: center;
+    
+      margin-top: 20px;
+    }
+    
+    .empty-icon {
+      font-size: 42px;
+      margin-bottom: 14px;
+    }
+    
+    .empty-title {
+      font-size: 17px;
+      font-weight: 700;
+    
+      margin-bottom: 8px;
+    }
+    
+    .empty-text {
+      font-size: 13px;
+      color: #6b7280;
+    
+      line-height: 1.6;
+    }
+
   </style>
 
 </head>
@@ -1270,6 +1462,17 @@ content="#0F4C5C"
   >
     <span class="nav-icon">🛡️</span>
     <span>กรมธรรม์</span>
+  </button>
+
+  
+  <button
+    class="nav-item"
+    data-page="policies"
+    type="button"
+    onclick="navigateTo('coverage')"
+  >
+    <span class="nav-icon">📊</span>
+    <span>ความคุ้มครอง</span>
   </button>
 
 
@@ -1896,6 +2099,11 @@ content="#0F4C5C"
 
           break;
 
+        case 'coverage':
+          container.innerHTML =
+            renderCoveragePage();
+          break;
+
 
         case 'family':
 
@@ -1930,6 +2138,177 @@ content="#0F4C5C"
 
       scrollToTop();
 
+    }
+
+    function renderCoveragePage() {
+
+      const app = document.getElementById('app');
+    
+      const summary = accountData?.coverageSummary || [];
+    
+      if (!summary.length) {
+    
+        app.innerHTML = `
+          <div class="page">
+    
+            <div class="page-header">
+              <button class="back-btn" onclick="navigateTo('home')">←</button>
+    
+              <div>
+                <div class="page-title">
+                  ความคุ้มครอง
+                </div>
+    
+                <div class="page-subtitle">
+                  ภาพรวมความคุ้มครองของคุณ
+                </div>
+              </div>
+            </div>
+    
+    
+            <div class="empty-card">
+    
+              <div class="empty-icon">
+                🛡️
+              </div>
+    
+              <div class="empty-title">
+                ยังไม่มีข้อมูลความคุ้มครอง
+              </div>
+    
+              <div class="empty-text">
+                ยังไม่มีข้อมูลกรมธรรม์ที่ ANC Life Planning ดูแล
+                หรือมีข้อมูลอยู่ในระบบ
+              </div>
+    
+            </div>
+    
+          </div>
+        `;
+    
+        scrollToTop();
+    
+        return;
+      }
+    
+    
+      let html = `
+    
+        <div class="page">
+    
+          <div class="page-header">
+    
+            <button class="back-btn" onclick="navigateTo('home')">
+              ←
+            </button>
+    
+            <div>
+    
+              <div class="page-title">
+                ความคุ้มครอง
+              </div>
+    
+              <div class="page-subtitle">
+                ภาพรวมความคุ้มครองของคุณ
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+          <div class="coverage-info-card">
+    
+            <div class="coverage-info-icon">
+              🛡️
+            </div>
+    
+            <div>
+    
+              <div class="coverage-info-title">
+                ความคุ้มครองของฉัน
+              </div>
+    
+              <div class="coverage-info-text">
+                แสดงเฉพาะข้อมูลกรมธรรม์ที่ ANC Life Planning ดูแล
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+          <div class="section-title">
+            สรุปความคุ้มครอง
+          </div>
+    
+          <div class="coverage-grid">
+      `;
+    
+    
+      summary.forEach(item => {
+    
+        const amount = Number(item.totalAmount || 0);
+    
+        const unit = item.unit || '';
+    
+        const icon = item.icon || '🛡️';
+    
+        const name = item.coverageName || item.name || 'ความคุ้มครอง';
+    
+    
+        html += `
+    
+          <div class="coverage-card">
+    
+            <div class="coverage-icon">
+              ${icon}
+            </div>
+    
+            <div class="coverage-name">
+              ${name}
+            </div>
+    
+            <div class="coverage-amount">
+              ${formatNumber(amount)}
+            </div>
+    
+            <div class="coverage-unit">
+              ${unit}
+            </div>
+    
+          </div>
+    
+        `;
+    
+      });
+    
+    
+      html += `
+    
+          </div>
+    
+    
+          <div class="coverage-note">
+    
+            <div class="coverage-note-title">
+              💡 หมายเหตุ
+            </div>
+    
+            <div class="coverage-note-text">
+              จำนวนความคุ้มครองที่แสดงเป็นข้อมูลจากกรมธรรม์
+              ที่มีอยู่ในระบบ ANC เท่านั้น
+            </div>
+    
+          </div>
+    
+        </div>
+      `;
+    
+    
+      app.innerHTML = html;
+    
+      scrollToTop();
     }
 
     function renderPolicyCopaymentSection(
