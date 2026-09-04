@@ -764,19 +764,104 @@ content="#0F4C5C"
       color: #0f4c5c;
     }
 
-    /* =========================================
-       BOTTOM NAV
-    ========================================= */
-
+    /* =====================================
+       BOTTOM NAVIGATION
+    ===================================== */
+    
     .bottom-nav {
+    
       position: fixed;
+    
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 100;
+    
+      height: 68px;
+    
       background: rgba(255,255,255,0.97);
-      border-top: 1px solid #e6ecee;
-      backdrop-filter: blur(10px);
+    
+      border-top: 1px solid #e5e7eb;
+    
+      display: grid;
+    
+      grid-template-columns: repeat(5, 1fr);
+    
+      align-items: stretch;
+    
+      z-index: 999;
+    
+      box-shadow:
+        0 -4px 18px rgba(0,0,0,0.06);
+    
+    }
+
+    .bottom-nav-item {
+
+      appearance: none;
+    
+      border: 0;
+    
+      background: transparent;
+    
+      padding: 6px 2px 5px;
+    
+      margin: 0;
+    
+      min-width: 0;
+    
+      display: flex;
+    
+      flex-direction: column;
+    
+      align-items: center;
+    
+      justify-content: center;
+    
+      gap: 2px;
+    
+      color: #9ca3af;
+    
+      cursor: pointer;
+    
+    }
+    
+    
+    .bottom-nav-item.active {
+    
+      color: #111827;
+    
+    }
+    
+    
+    .bottom-nav-icon {
+    
+      font-size: 20px;
+    
+      line-height: 1;
+    
+    }
+    
+    
+    .bottom-nav-label {
+    
+      font-size: 10px;
+    
+      font-weight: 600;
+    
+      line-height: 1.1;
+    
+      white-space: nowrap;
+    
+    }
+    
+    
+    /* เพิ่มพื้นที่ด้านล่าง
+       ไม่ให้ Content โดน Bottom Nav บัง */
+    
+    #pageContainer {
+    
+      padding-bottom: 84px;
+    
     }
 
     .bottom-nav-inner {
@@ -1441,10 +1526,10 @@ content="#0F4C5C"
   >
 
 ```
-<div class="bottom-nav-inner">
+<div class="bottom-nav">
 
   <button
-    class="nav-item active"
+    class="bottom-nav-item active"
     data-page="home"
     type="button"
     onclick="navigateTo('home')"
@@ -1455,7 +1540,7 @@ content="#0F4C5C"
 
 
   <button
-    class="nav-item"
+    class="bottom-nav-item"
     data-page="policies"
     type="button"
     onclick="navigateTo('policies')"
@@ -1466,7 +1551,7 @@ content="#0F4C5C"
 
   
   <button
-    class="nav-item"
+    class="bottom-nav-item"
     data-page="policies"
     type="button"
     onclick="navigateTo('coverage')"
@@ -1477,7 +1562,7 @@ content="#0F4C5C"
 
 
   <button
-    class="nav-item"
+    class="bottom-nav-item"
     data-page="family"
     type="button"
     onclick="navigateTo('family')"
@@ -1488,7 +1573,7 @@ content="#0F4C5C"
 
 
   <button
-    class="nav-item"
+    class="bottom-nav-item"
     data-page="account"
     type="button"
     onclick="navigateTo('account')"
@@ -2043,25 +2128,22 @@ content="#0F4C5C"
     }
 
 
-    function updateNavigation(
-      page
-    ) {
+    function updateNavigation(page) {
 
       document
-        .querySelectorAll(
-          '.nav-item'
-        )
-        .forEach(
-          button => {
-
-            button.classList.toggle(
-              'active',
-              button.dataset.page === page
-            );
-
-          }
-        );
-
+        .querySelectorAll('.bottom-nav-item')
+        .forEach(item => {
+    
+          const itemPage =
+            item.getAttribute('data-page');
+    
+          item.classList.toggle(
+            'active',
+            itemPage === page
+          );
+    
+        });
+    
     }
 
 
@@ -2100,7 +2182,10 @@ content="#0F4C5C"
           break;
 
         case 'coverage':
+          
+          container.innerHTML =
             renderCoveragePage();
+          
           break;
 
 
@@ -2141,19 +2226,26 @@ content="#0F4C5C"
 
     function renderCoveragePage() {
 
-      const app = document.getElementById('app');
+      const summary =
+        accountData?.coverageSummary || [];
     
-      const summary = accountData?.coverageSummary || [];
     
       if (!summary.length) {
     
-        app.innerHTML = `
+        return `
           <div class="page">
     
             <div class="page-header">
-              <button class="back-btn" onclick="navigateTo('home')">←</button>
+    
+              <button
+                class="back-btn"
+                onclick="navigateTo('home')"
+              >
+                ←
+              </button>
     
               <div>
+    
                 <div class="page-title">
                   ความคุ้มครอง
                 </div>
@@ -2161,7 +2253,9 @@ content="#0F4C5C"
                 <div class="page-subtitle">
                   ภาพรวมความคุ้มครองของคุณ
                 </div>
+    
               </div>
+    
             </div>
     
     
@@ -2176,7 +2270,8 @@ content="#0F4C5C"
               </div>
     
               <div class="empty-text">
-                ยังไม่มีข้อมูลกรมธรรม์ที่ ANC Life Planning ดูแล
+                ยังไม่มีข้อมูลกรมธรรม์ที่
+                ANC Life Planning ดูแล
                 หรือมีข้อมูลอยู่ในระบบ
               </div>
     
@@ -2184,10 +2279,6 @@ content="#0F4C5C"
     
           </div>
         `;
-    
-        scrollToTop();
-    
-        return;
       }
     
     
@@ -2197,7 +2288,10 @@ content="#0F4C5C"
     
           <div class="page-header">
     
-            <button class="back-btn" onclick="navigateTo('home')">
+            <button
+              class="back-btn"
+              onclick="navigateTo('home')"
+            >
               ←
             </button>
     
@@ -2229,7 +2323,8 @@ content="#0F4C5C"
               </div>
     
               <div class="coverage-info-text">
-                แสดงเฉพาะข้อมูลกรมธรรม์ที่ ANC Life Planning ดูแล
+                แสดงเฉพาะข้อมูลกรมธรรม์
+                ที่ ANC Life Planning ดูแล
               </div>
     
             </div>
@@ -2241,19 +2336,26 @@ content="#0F4C5C"
             สรุปความคุ้มครอง
           </div>
     
+    
           <div class="coverage-grid">
       `;
     
     
       summary.forEach(item => {
     
-        const amount = Number(item.totalAmount || 0);
+        const amount =
+          Number(item.totalAmount || 0);
     
-        const unit = item.unit || '';
+        const unit =
+          item.unit || 'บาท';
     
-        const icon = item.icon || '🛡️';
+        const icon =
+          item.icon || '🛡️';
     
-        const name = item.coverageName || item.name || 'ความคุ้มครอง';
+        const name =
+          item.coverageName ||
+          item.name ||
+          'ความคุ้มครอง';
     
     
         html += `
@@ -2295,19 +2397,19 @@ content="#0F4C5C"
             </div>
     
             <div class="coverage-note-text">
-              จำนวนความคุ้มครองที่แสดงเป็นข้อมูลจากกรมธรรม์
+              จำนวนความคุ้มครองที่แสดง
+              เป็นข้อมูลจากกรมธรรม์
               ที่มีอยู่ในระบบ ANC เท่านั้น
             </div>
     
           </div>
     
         </div>
+    
       `;
     
     
-      app.innerHTML = html;
-    
-      scrollToTop();
+      return html;
     }
 
     function renderPolicyCopaymentSection(
