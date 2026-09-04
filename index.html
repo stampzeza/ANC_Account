@@ -1,86 +1,3152 @@
 <!DOCTYPE html>
+
 <html lang="th">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+
+>
+
   <meta name="theme-color" content="#0F4C5C">
+
   <title>ANC Life Planning</title>
+
+  <!-- LINE LIFF SDK -->
+
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
   <style>
-    *{box-sizing:border-box}html,body{margin:0;padding:0;background:#f5f7f8;color:#1f2933;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}html{scroll-behavior:auto}body{min-height:100vh}button{font:inherit;cursor:pointer}.hidden{display:none!important}.app{min-height:100vh;padding-bottom:88px}.page{width:100%;max-width:640px;margin:0 auto;padding:16px}.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}.box{width:100%;max-width:400px;background:#fff;border-radius:22px;padding:28px 22px;text-align:center;box-shadow:0 8px 30px rgba(15,76,92,.08)}.logo{width:72px;height:72px;margin:0 auto 16px;border-radius:20px;background:#0f4c5c;color:#fff;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800}.screen-title{font-size:21px;font-weight:800;color:#0f4c5c}.screen-text{margin-top:10px;color:#6b7280;font-size:14px;line-height:1.7;white-space:pre-line}.spinner{width:30px;height:30px;margin:20px auto 0;border:3px solid #d9e2e6;border-top-color:#0f4c5c;border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.btn{border:0;border-radius:12px;padding:12px 18px;font-weight:800}.btn-primary{margin-top:18px;width:100%;background:#0f4c5c;color:#fff}.header{display:flex;align-items:center;gap:14px;margin-bottom:18px}.avatar,.avatar-ph{width:58px;height:58px;border-radius:50%;flex-shrink:0}.avatar{object-fit:cover;background:#dfe8eb}.avatar-ph{background:#dfe8eb;display:flex;align-items:center;justify-content:center;font-size:24px}.header-text{min-width:0;flex:1}.greeting{font-size:13px;color:#6b7280}.name{font-size:20px;font-weight:800;color:#0f4c5c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sub{font-size:11px;color:#9ca3af;margin-top:3px}.section{margin-bottom:18px}.section-title{font-size:17px;font-weight:800;margin-bottom:10px;color:#16323a;display:flex;justify-content:space-between;align-items:center}.link{font-size:12px;color:#0f4c5c}.card{background:#fff;border-radius:18px;padding:16px;box-shadow:0 4px 18px rgba(15,76,92,.06)}.empty{background:#fff;border-radius:18px;padding:22px 16px;text-align:center;color:#9ca3af;font-size:13px}.savings-list,.policy-list,.event-list{display:flex;flex-direction:column;gap:10px}.savings-card,.policy-card,.event-card{background:#fff;border-radius:18px;padding:16px;box-shadow:0 4px 18px rgba(15,76,92,.06)}.row{display:flex;justify-content:space-between;gap:12px}.strong{font-weight:800}.muted{font-size:12px;color:#6b7280}.progress{height:8px;background:#e7edef;border-radius:999px;overflow:hidden;margin-top:12px}.bar{height:100%;background:#0f4c5c;border-radius:999px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.coverage{min-height:100px;border-radius:16px;padding:14px;background:#fff;border:1px solid #edf1f2;border-left:4px solid var(--c,#0f4c5c)}.coverage.off{background:#f2f4f5;border-left-color:#cfd6d8}.coverage-icon{font-size:22px}.coverage-name{font-size:12px;color:#6b7280;margin-top:7px}.coverage-value{font-size:17px;font-weight:800;margin-top:4px}.coverage.off .coverage-value{font-size:12px;color:#9ca3af}.family-list{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none}.family-list::-webkit-scrollbar{display:none}.family{flex:0 0 150px;background:#fff;border-radius:16px;padding:14px;box-shadow:0 4px 18px rgba(15,76,92,.06)}.family-avatar{width:42px;height:42px;border-radius:50%;background:#e8eef0;display:flex;align-items:center;justify-content:center;margin-bottom:10px}.family-name{font-size:14px;font-weight:800}.family-rel{font-size:11px;color:#9ca3af;margin-top:2px}.event{display:flex;gap:12px;align-items:flex-start}.dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex:none;background:#0f4c5c}.dot.high{background:#dc2626}.dot.normal{background:#d97706}.event-body{flex:1}.event-title{font-size:13px;font-weight:800}.event-desc{margin-top:4px;color:#6b7280;font-size:12px;line-height:1.6}.event-date{margin-top:6px;color:#9ca3af;font-size:11px}.insight{background:#eaf3f5;border-radius:18px;padding:16px}.insight-title{font-size:14px;font-weight:800;color:#0f4c5c}.insight-text{margin-top:7px;font-size:13px;line-height:1.7;color:#35515a}.riders{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.badge{background:#f1f5f6;color:#4b5563;border-radius:999px;padding:6px 8px;font-size:10px;font-weight:700}.footer{display:grid;grid-template-columns:1fr 1fr;gap:10px;border-top:1px solid #eef2f3;margin-top:14px;padding-top:12px}.bottom{position:fixed;left:0;right:0;bottom:0;z-index:100;background:rgba(255,255,255,.96);border-top:1px solid #e6ecee;backdrop-filter:blur(10px)}.nav{max-width:640px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);min-height:68px}.nav button{border:0;background:transparent;color:#9ca3af;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700}.nav button.active{color:#0f4c5c}.nav-icon{font-size:21px}.status{padding:5px 9px;border-radius:999px;background:#e9f7ef;color:#16834b;font-size:10px;font-weight:800;white-space:nowrap}@media(max-width:380px){.grid{grid-template-columns:1fr}}
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #f5f7f8;
+      color: #1f2933;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================================
+       APP
+    ========================================= */
+
+    .app {
+      min-height: 100vh;
+      padding-bottom: 92px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    /* =========================================
+       LOADING
+    ========================================= */
+
+    .loading-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .loading-box {
+      width: 100%;
+      max-width: 320px;
+      text-align: center;
+    }
+
+    .loading-logo {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 18px;
+      border-radius: 20px;
+      background: #0f4c5c;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .loading-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #16323a;
+      margin-bottom: 8px;
+    }
+
+    .loading-text {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .spinner {
+      width: 30px;
+      height: 30px;
+      margin: 20px auto 0;
+      border: 3px solid #d9e2e6;
+      border-top-color: #0f4c5c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* =========================================
+       ERROR
+    ========================================= */
+
+    .error-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .error-box {
+      width: 100%;
+      max-width: 380px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow:
+        0 8px 30px rgba(15, 76, 92, 0.08);
+    }
+
+    .error-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .error-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .error-message {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre-line;
+      word-break: break-word;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 18px;
+      font-weight: 800;
+    }
+
+    .btn-primary {
+      margin-top: 18px;
+      background: #0f4c5c;
+      color: #ffffff;
+      width: 100%;
+    }
+
+    /* =========================================
+       WELCOME
+    ========================================= */
+
+    .welcome {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .welcome-box {
+      width: 100%;
+      max-width: 420px;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 30px 22px;
+      text-align: center;
+      box-shadow:
+        0 8px 30px rgba(15, 76, 92, 0.08);
+    }
+
+    .welcome-icon {
+      font-size: 48px;
+      margin-bottom: 14px;
+    }
+
+    .welcome-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f4c5c;
+      margin-bottom: 10px;
+    }
+
+    .welcome-text {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    /* =========================================
+       HOME HEADER
+    ========================================= */
+
+    .account-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .profile-image,
+    .profile-placeholder {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .profile-image {
+      object-fit: cover;
+      background: #dfe8eb;
+    }
+
+    .profile-placeholder {
+      background: #dfe8eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+    }
+
+    .account-greeting {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .greeting {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 2px;
+    }
+
+    .display-name {
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f4c5c;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .updated-text {
+      margin-top: 3px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    /* =========================================
+       HERO SUMMARY
+    ========================================= */
+
+    .hero-card {
+      background: linear-gradient(
+        135deg,
+        #0f4c5c,
+        #17697b
+      );
+      color: #ffffff;
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow:
+        0 10px 28px rgba(15, 76, 92, 0.18);
+    }
+
+    .hero-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+
+    .hero-title {
+      margin-top: 4px;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .hero-stat {
+      background: rgba(255, 255, 255, 0.10);
+      border-radius: 15px;
+      padding: 13px;
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      opacity: 0.78;
+    }
+
+    .hero-stat-value {
+      margin-top: 4px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .hero-stat-unit {
+      font-size: 11px;
+      opacity: 0.78;
+      margin-left: 2px;
+    }
+
+    /* =========================================
+       SECTION
+    ========================================= */
+
+    .section {
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #16323a;
+    }
+
+    .section-subtitle {
+      margin-top: -5px;
+      margin-bottom: 10px;
+      font-size: 11px;
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+
+    .section-link {
+      font-size: 12px;
+      color: #0f4c5c;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* =========================================
+       SAVINGS
+    ========================================= */
+
+    .savings-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .savings-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow:
+        0 4px 18px rgba(15, 76, 92, 0.06);
+    }
+
+    .savings-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .savings-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #16323a;
+    }
+
+    .savings-year {
+      color: #0f4c5c;
+      font-size: 17px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .savings-caption {
+      margin-top: 5px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .savings-amount {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #4b5563;
+    }
+
+    .savings-amount strong {
+      color: #16323a;
+      font-size: 15px;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 9px;
+      margin-top: 13px;
+      border-radius: 99px;
+      background: #e7edef;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      border-radius: 99px;
+      background: #0f4c5c;
+    }
+
+    .savings-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    /* =========================================
+       COVERAGE
+    ========================================= */
+
+    .coverage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .coverage-item {
+      min-height: 112px;
+      border-radius: 17px;
+      padding: 14px;
+      background: #ffffff;
+      border: 1px solid #edf1f2;
+      border-left: 4px solid var(
+        --coverage-color,
+        #0f4c5c
+      );
+      box-shadow:
+        0 4px 15px rgba(15, 76, 92, 0.04);
+    }
+
+    .coverage-item.no-coverage {
+      background: #f0f2f3;
+      border-left-color: #c5cdd0;
+      box-shadow: none;
+    }
+
+    .coverage-icon {
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .coverage-name {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .coverage-value {
+      margin-top: 4px;
+      font-size: 17px;
+      font-weight: 900;
+      color: #16323a;
+      line-height: 1.3;
+    }
+
+    .coverage-item.no-coverage .coverage-value {
+      color: #9ca3af;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* =========================================
+       FAMILY
+    ========================================= */
+
+    .family-list {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 3px;
+      scrollbar-width: none;
+    }
+
+    .family-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .family-card {
+      flex: 0 0 155px;
+      background: #ffffff;
+      border-radius: 17px;
+      padding: 14px;
+      box-shadow:
+        0 4px 18px rgba(15, 76, 92, 0.06);
+    }
+
+    .family-avatar {
+      width: 43px;
+      height: 43px;
+      border-radius: 50%;
+      background: #e8eef0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .family-name {
+      font-size: 14px;
+      font-weight: 800;
+      color: #16323a;
+    }
+
+    .family-relation {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 2px;
+    }
+
+    .family-coverage {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    /* =========================================
+       EVENTS
+    ========================================= */
+
+    .event-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .event-card {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 14px;
+      box-shadow:
+        0 4px 18px rgba(15, 76, 92, 0.05);
+    }
+
+    .event-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+      background: #9ca3af;
+    }
+
+    .event-indicator.high {
+      background: #dc2626;
+    }
+
+    .event-indicator.normal {
+      background: #d97706;
+    }
+
+    .event-indicator.info {
+      background: #0f4c5c;
+    }
+
+    .event-content {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .event-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: #16323a;
+    }
+
+    .event-description {
+      margin-top: 4px;
+      color: #6b7280;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .event-date {
+      margin-top: 6px;
+      color: #9ca3af;
+      font-size: 11px;
+    }
+
+    /* =========================================
+       INSIGHT
+    ========================================= */
+
+    .insight-card {
+      background: #eaf3f5;
+      border-radius: 18px;
+      padding: 17px;
+      border: 1px solid #dcebef;
+    }
+
+    .insight-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f4c5c;
+    }
+
+    .insight-text {
+      margin-top: 7px;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #35515a;
+    }
+
+    /* =========================================
+       POLICY PAGE
+    ========================================= */
+
+    .policy-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .policy-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow:
+        0 4px 18px rgba(15, 76, 92, 0.06);
+    }
+
+    .policy-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .policy-name {
+      font-size: 15px;
+      font-weight: 800;
+      color: #16323a;
+    }
+
+    .policy-status {
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: #e9f7ef;
+      color: #16834b;
+      font-size: 10px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .policy-no {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .policy-riders {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .rider-badge {
+      border-radius: 999px;
+      background: #f1f5f6;
+      color: #4b5563;
+      padding: 6px 8px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .policy-footer {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      border-top: 1px solid #eef2f3;
+      margin-top: 14px;
+      padding-top: 12px;
+    }
+
+    /* =========================================
+       BOTTOM NAV
+    ========================================= */
+
+    .bottom-nav {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.97);
+      border-top: 1px solid #e6ecee;
+      backdrop-filter: blur(10px);
+    }
+
+    .bottom-nav-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      min-height: 68px;
+    }
+
+    .nav-item {
+      border: 0;
+      background: transparent;
+      color: #9ca3af;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .nav-item.active {
+      color: #0f4c5c;
+    }
+
+    .nav-icon {
+      font-size: 21px;
+      line-height: 1;
+    }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
+
+    @media (max-width: 380px) {
+
+      .page {
+        padding: 13px;
+      }
+
+      .coverage-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-title {
+        font-size: 19px;
+      }
+
+      .hero-stat-value {
+        font-size: 18px;
+      }
+
+    }
+
   </style>
+
 </head>
+
 <body>
-  <div id="loading" class="screen"><div class="box"><div class="logo">ANC</div><div class="screen-title">ANC Life Planning</div><div id="loadingText" class="screen-text">กำลังเชื่อมต่อบัญชีของคุณ...</div><div class="spinner"></div></div></div>
-  <div id="error" class="screen hidden"><div class="box"><div style="font-size:42px">⚠️</div><div class="screen-title">ไม่สามารถโหลดข้อมูลได้</div><div id="errorText" class="screen-text"></div><button class="btn btn-primary" onclick="location.reload()">ลองอีกครั้ง</button></div></div>
-  <div id="welcome" class="screen hidden"><div class="box"><div style="font-size:48px">👋</div><div class="screen-title">ยินดีต้อนรับสู่ ANC</div><div class="screen-text">ยังไม่พบข้อมูล Account ของคุณ\n\nระบบแสดงข้อมูลเฉพาะความคุ้มครองที่ ANC Life Planning ดูแล</div><button class="btn btn-primary" onclick="handleRegister()">เริ่มต้นใช้งาน</button></div></div>
-  <div id="app" class="app hidden"><main id="page" class="page"></main></div>
-  <nav id="bottom" class="bottom hidden"><div class="nav"><button class="active" data-page="home" onclick="navigateTo('home')"><span class="nav-icon">🏠</span><span>ภาพรวม</span></button><button data-page="policies" onclick="navigateTo('policies')"><span class="nav-icon">🛡️</span><span>กรมธรรม์</span></button><button data-page="family" onclick="navigateTo('family')"><span class="nav-icon">👨‍👩‍👧‍👦</span><span>ครอบครัว</span></button><button data-page="account" onclick="navigateTo('account')"><span class="nav-icon">👤</span><span>บัญชี</span></button></div></nav>
+
+  <!-- ========================================
+       LOADING
+  ======================================== -->
+
+  <div
+    id="loadingScreen"
+    class="loading-screen"
+  >
+
+```
+<div class="loading-box">
+
+  <div class="loading-logo">
+    ANC
+  </div>
+
+  <div class="loading-title">
+    ANC Life Planning
+  </div>
+
+  <div
+    id="loadingText"
+    class="loading-text"
+  >
+    กำลังเชื่อมต่อบัญชีของคุณ...
+  </div>
+
+  <div class="spinner"></div>
+
+</div>
+```
+
+  </div>
+
+  <!-- ========================================
+       ERROR
+  ======================================== -->
+
+  <div
+    id="errorScreen"
+    class="error-screen hidden"
+  >
+
+```
+<div class="error-box">
+
+  <div class="error-icon">
+    ⚠️
+  </div>
+
+  <div class="error-title">
+    ไม่สามารถโหลดข้อมูลได้
+  </div>
+
+  <div
+    id="errorMessage"
+    class="error-message"
+  ></div>
+
+  <button
+    class="btn btn-primary"
+    type="button"
+    onclick="location.reload()"
+  >
+    ลองอีกครั้ง
+  </button>
+
+</div>
+```
+
+  </div>
+
+  <!-- ========================================
+       WELCOME
+  ======================================== -->
+
+  <div
+    id="welcomeScreen"
+    class="welcome hidden"
+  >
+
+```
+<div class="welcome-box">
+
+  <div class="welcome-icon">
+    👋
+  </div>
+
+  <div class="welcome-title">
+    ยินดีต้อนรับสู่ ANC
+  </div>
+
+  <div class="welcome-text">
+
+    ระบบยังไม่พบข้อมูล Account ของคุณ
+
+    <br><br>
+
+    ข้อมูลที่แสดงในระบบ
+    เป็นข้อมูลความคุ้มครองที่
+    ANC Life Planning ดูแล
+
+  </div>
+
+  <button
+    id="registerButton"
+    class="btn btn-primary"
+    type="button"
+    onclick="handleRegister()"
+  >
+    เริ่มต้นใช้งาน
+  </button>
+
+</div>
+```
+
+  </div>
+
+  <!-- ========================================
+       APP
+  ======================================== -->
+
+  <div
+    id="app"
+    class="app hidden"
+  >
+
+```
+<main
+  id="pageContainer"
+  class="page"
+></main>
+```
+
+  </div>
+
+  <!-- ========================================
+       BOTTOM NAV
+  ======================================== -->
+
+  <nav
+    id="bottomNav"
+    class="bottom-nav hidden"
+  >
+
+```
+<div class="bottom-nav-inner">
+
+  <button
+    class="nav-item active"
+    data-page="home"
+    type="button"
+    onclick="navigateTo('home')"
+  >
+    <span class="nav-icon">🏠</span>
+    <span>ภาพรวม</span>
+  </button>
+
+
+  <button
+    class="nav-item"
+    data-page="policies"
+    type="button"
+    onclick="navigateTo('policies')"
+  >
+    <span class="nav-icon">🛡️</span>
+    <span>กรมธรรม์</span>
+  </button>
+
+
+  <button
+    class="nav-item"
+    data-page="family"
+    type="button"
+    onclick="navigateTo('family')"
+  >
+    <span class="nav-icon">👨‍👩‍👧‍👦</span>
+    <span>ครอบครัว</span>
+  </button>
+
+
+  <button
+    class="nav-item"
+    data-page="account"
+    type="button"
+    onclick="navigateTo('account')"
+  >
+    <span class="nav-icon">👤</span>
+    <span>บัญชี</span>
+  </button>
+
+</div>
+```
+
+  </nav>
+
   <script>
-    const CONFIG={LIFF_ID:'2011442900-xcPpvfIE',API_URL:'https://script.google.com/macros/s/AKfycbxiaKpavAocuYtKoB_YYke9I_J1r9uTkEmOmcdxb9byJI_15Elzh8qovqMGlbhqqzEq/exec'};
-    let accountData=null;
 
-    document.addEventListener('DOMContentLoaded',initAccount);
+    /* =========================================
+       CONFIG
+    ========================================= */
 
-    async function initAccount(){
-      try{
-        if(!CONFIG.LIFF_ID||CONFIG.LIFF_ID==='YOUR_LIFF_ID') throw new Error('กรุณาใส่ LIFF ID ของ ANC Account ใน index.html');
-        setLoading('กำลังเริ่มต้นระบบ...');
-        await liff.init({liffId:CONFIG.LIFF_ID});
-        if(!liff.isInClient()&&!liff.isLoggedIn()){setLoading('กำลังเข้าสู่ระบบ LINE...');liff.login();return;}
-        const idToken=liff.getIDToken();
-        if(!idToken) throw new Error('ไม่สามารถอ่าน LINE ID Token ได้');
-        setLoading('กำลังโหลดข้อมูลของคุณ...');
-        const result=await requestAccount(idToken);
-        if(!result||!result.success) throw new Error(result?.error||'ไม่สามารถโหลดข้อมูล Account ได้');
-        if(!result.registered){showWelcome();console.log('LINE User ID:',result.lineUserId||'');return;}
-        accountData=result.account||{};
+    const CONFIG = {
+
+      /*
+       * LIFF ID ของ ANC Account
+       */
+      LIFF_ID:
+        '2011442900-xcPpvfIE',
+
+
+      /*
+       * Apps Script Account API
+       */
+      API_URL:
+        'https://script.google.com/macros/s/AKfycbxiaKpavAocuYtKoB_YYke9I_J1r9uTkEmOmcdxb9byJI_15Elzh8qovqMGlbhqqzEq/exec'
+
+    };
+
+
+    /* =========================================
+       STATE
+    ========================================= */
+
+    let accountData = null;
+
+    let currentPage = 'home';
+
+
+    /* =========================================
+       INIT
+    ========================================= */
+
+    document.addEventListener(
+      'DOMContentLoaded',
+      initAccount
+    );
+
+
+    async function initAccount() {
+
+      try {
+
+        validateConfig();
+
+
+        showLoading(
+          'กำลังเริ่มต้นระบบ...'
+        );
+
+
+        if (
+          typeof liff === 'undefined'
+        ) {
+
+          throw new Error(
+            'ไม่พบ LINE LIFF SDK'
+          );
+
+        }
+
+
+        await liff.init({
+
+          liffId:
+            CONFIG.LIFF_ID
+
+        });
+
+
+        /*
+         * External Browser
+         *
+         * ถ้ายังไม่ได้ Login
+         */
+        if (
+          !liff.isInClient() &&
+          !liff.isLoggedIn()
+        ) {
+
+          showLoading(
+            'กำลังเข้าสู่ระบบ LINE...'
+          );
+
+          liff.login();
+
+          return;
+        }
+
+
+        /*
+         * อ่าน ID Token
+         */
+        const idToken =
+          liff.getIDToken();
+
+
+        if (!idToken) {
+
+          throw new Error(
+            'ไม่สามารถอ่าน LINE ID Token ได้'
+          );
+
+        }
+
+
+        /*
+         * เรียก API
+         */
+        showLoading(
+          'กำลังโหลดข้อมูลของคุณ...'
+        );
+
+
+        const result =
+          await requestAccount(
+            idToken
+          );
+
+
+        if (
+          !result ||
+          !result.success
+        ) {
+
+          throw new Error(
+            result?.error ||
+            'ไม่สามารถโหลดข้อมูล Account ได้'
+          );
+
+        }
+
+
+        /*
+         * ไม่พบ Customer
+         */
+        if (
+          !result.registered
+        ) {
+
+          console.log(
+            'LINE User ID:',
+            result.lineUserId || ''
+          );
+
+          showWelcome();
+
+          return;
+        }
+
+
+        /*
+         * พบ Customer
+         */
+        accountData =
+          result.account || {};
+
+
         showApp();
-        renderPage('home');
-      }catch(err){console.error(err);showError(err?.message||'เกิดข้อผิดพลาด');}
+
+
+        renderPage(
+          'home'
+        );
+
+
+        scrollToTop();
+
+
+      } catch (error) {
+
+        console.error(
+          'initAccount error:',
+          error
+        );
+
+
+        showError(
+          error?.message ||
+          'เกิดข้อผิดพลาด'
+        );
+
+      }
+
     }
 
-    async function requestAccount(idToken){
-      const response=await fetch(CONFIG.API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'getAccount',idToken})});
-      if(!response.ok) throw new Error(`Account API HTTP ${response.status}`);
-      const text=await response.text();
-      try{return JSON.parse(text);}catch(e){console.error(text);throw new Error('Account API ส่งข้อมูลกลับมาไม่ใช่ JSON');}
+
+    /* =========================================
+       CONFIG VALIDATION
+    ========================================= */
+
+    function validateConfig() {
+
+      if (
+        !CONFIG.LIFF_ID ||
+        CONFIG.LIFF_ID === 'YOUR_LIFF_ID'
+      ) {
+
+        throw new Error(
+          'กรุณาใส่ LIFF ID ของ ANC Account ใน index.html'
+        );
+
+      }
+
+
+      if (
+        !CONFIG.API_URL ||
+        !CONFIG.API_URL.includes(
+          '/exec'
+        )
+      ) {
+
+        throw new Error(
+          'กรุณาตรวจสอบ API_URL ของ ANC Account API'
+        );
+
+      }
+
     }
 
-    function setLoading(text){document.getElementById('loadingText').textContent=text;document.getElementById('loading').classList.remove('hidden');document.getElementById('error').classList.add('hidden');document.getElementById('welcome').classList.add('hidden');document.getElementById('app').classList.add('hidden');document.getElementById('bottom').classList.add('hidden');}
-    function showError(text){document.getElementById('loading').classList.add('hidden');document.getElementById('error').classList.remove('hidden');document.getElementById('errorText').textContent=text;document.getElementById('welcome').classList.add('hidden');document.getElementById('app').classList.add('hidden');document.getElementById('bottom').classList.add('hidden');}
-    function showWelcome(){document.getElementById('loading').classList.add('hidden');document.getElementById('error').classList.add('hidden');document.getElementById('welcome').classList.remove('hidden');document.getElementById('app').classList.add('hidden');document.getElementById('bottom').classList.add('hidden');}
-    function showApp(){document.getElementById('loading').classList.add('hidden');document.getElementById('error').classList.add('hidden');document.getElementById('welcome').classList.add('hidden');document.getElementById('app').classList.remove('hidden');document.getElementById('bottom').classList.remove('hidden');}
 
-    function navigateTo(page){renderPage(page);scrollToTop();}
-    function renderPage(page){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));const el=document.getElementById('page');if(page==='home')el.innerHTML=renderHome();else if(page==='policies')el.innerHTML=renderPolicies();else if(page==='family')el.innerHTML=renderFamily();else el.innerHTML=renderAccount();scrollToTop();}
-    function scrollToTop(){window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0;}
+    /* =========================================
+       API
+    ========================================= */
 
-    function renderHome(){
-      const c=accountData?.customer||{},cov=Object.values(accountData?.coverageSummary||{}),family=accountData?.family||[],events=accountData?.events||[];
-      const savings=(accountData?.policies||[]).filter(p=>p.savings);
-      return `<div class="header">${c.ProfileImageURL?`<img class="avatar" src="${escapeHtml(c.ProfileImageURL)}" alt="">`:`<div class="avatar-ph">👤</div>`}<div class="header-text"><div class="greeting">สวัสดีครับ 👋</div><div class="name">${escapeHtml(c.DisplayName||c.FirstName||'-')}</div><div class="sub">ข้อมูลความคุ้มครองที่ ANC Life Planning ดูแล</div></div></div>
-      <section class="section"><div class="section-title">💰 เงินก้อนจากสะสมทรัพย์</div>${savings.length?`<div class="savings-list">${savings.map(renderSavings).join('')}</div>`:`<div class="empty">ยังไม่มีข้อมูลสะสมทรัพย์ในระบบ ANC</div>`}</section>
-      <section class="section"><div class="section-title">🛡️ ความคุ้มครองที่ ANC ดูแล</div>${cov.length?`<div class="grid">${cov.map(renderCoverage).join('')}</div>`:`<div class="empty">ยังไม่มีข้อมูลความคุ้มครองในระบบ ANC</div>`}</section>
-      <section class="section"><div class="section-title">👨‍👩‍👧‍👦 ครอบครัวของฉัน${family.length?`<span class="link" onclick="navigateTo('family')">ดูทั้งหมด</span>`:''}</div>${family.length?`<div class="family-list">${family.map(renderFamilyPreview).join('')}</div>`:`<div class="empty">ยังไม่มีสมาชิกครอบครัวในระบบ ANC</div>`}</section>
-      <section class="section"><div class="section-title">🔔 สิ่งที่ต้องรู้</div>${events.length?`<div class="event-list">${events.slice(0,3).map(renderEvent).join('')}</div>`:`<div class="empty">ตอนนี้ยังไม่มีรายการที่ต้องติดตาม</div>`}</section>
-      <section class="section"><div class="section-title">💡 ANC Insight</div><div class="insight"><div class="insight-title">ภาพรวมความคุ้มครองของคุณ</div><div class="insight-text">ระบบแสดงข้อมูลเฉพาะความคุ้มครองที่ ANC Life Planning ดูแล${cov.length?` ขณะนี้มีข้อมูล ${cov.filter(x=>x.HasCoverage).length} ด้านความคุ้มครอง`:''}</div></div></section>`;
+    async function requestAccount(
+      idToken
+    ) {
+
+      const response =
+        await fetch(
+          CONFIG.API_URL,
+          {
+            method:
+              'POST',
+
+            headers: {
+
+              'Content-Type':
+                'text/plain;charset=utf-8'
+
+            },
+
+            body:
+              JSON.stringify({
+                action:
+                  'getAccount',
+
+                idToken:
+                  idToken
+
+              })
+
+          }
+        );
+
+
+      if (!response.ok) {
+
+        throw new Error(
+          `Account API HTTP ${response.status}`
+        );
+
+      }
+
+
+      const text =
+        await response.text();
+
+
+      try {
+
+        return JSON.parse(
+          text
+        );
+
+      } catch (
+        error
+      ) {
+
+        console.error(
+          'Invalid API JSON:',
+          text
+        );
+
+        throw new Error(
+          'Account API ส่งข้อมูลกลับมาไม่ใช่ JSON'
+        );
+
+      }
+
     }
 
-    function renderSavings(policy){const s=policy.savings||{},cy=Number(s.CurrentPaymentYear||0),ty=Number(s.PaymentTermYears||0),pp=Number(s.ProgressPercent||0);return `<div class="savings-card"><div class="row"><div><div class="strong">${escapeHtml(policy.PlanName||'-')}</div><div class="muted" style="margin-top:6px">ทุนครบสัญญา <b>${formatNumber(s.MaturityAmount)}</b> บาท</div></div><div class="strong" style="color:#0f4c5c">${String(cy).padStart(2,'0')} / ${String(ty).padStart(2,'0')}</div></div><div class="progress"><div class="bar" style="width:${Math.min(Math.max(pp,0),100)}%"></div></div><div class="footer"><div><div class="mini-label">จ่ายเบี้ยหมด</div><div class="mini-value">${formatDate(s.PremiumEndDate)}</div></div><div><div class="mini-label">ครบสัญญา</div><div class="mini-value">${formatDate(s.MaturityDate)}</div></div></div></div>`;}
-    function renderCoverage(x){const has=!!x.HasCoverage;return `<div class="coverage ${has?'':'off'}" style="--c:${escapeHtml(x.ColorCode||'#0f4c5c')}"><div class="coverage-icon">${escapeHtml(x.Icon||'🛡️')}</div><div class="coverage-name">${escapeHtml(x.CoverageName||'-')}</div><div class="coverage-value">${has?`${formatNumber(x.CoverageAmount)} ${escapeHtml(x.Unit||'')}`:'ยังไม่มีข้อมูลใน ANC'}</div></div>`;}
-    function renderFamilyPreview(m){return `<div class="family"><div class="family-avatar">👤</div><div class="family-name">${escapeHtml(m.DisplayName||m.FirstName||'-')}</div><div class="family-rel">${escapeHtml(relLabel(m.Relationship))}</div><div class="family-coverage">ดูข้อมูลความคุ้มครอง</div></div>`;}
-    function renderEvent(e){const p=String(e.Priority||'INFO').toLowerCase(),r=Number(e.RemainingDays||0);return `<div class="event-card"><div class="event"><div class="dot ${p}"></div><div class="event-body"><div class="event-title">${escapeHtml(e.Title||'-')}</div><div class="event-desc">${escapeHtml(e.Description||'')}</div><div class="event-date">${escapeHtml(formatDate(e.EventDate))}${r>0?` · อีก ${r} วัน`:' · วันนี้'}</div></div></div></div>`;}
 
-    function renderPolicies(){const ps=accountData?.policies||[];return `<div class="section-title">🛡️ กรมธรรม์ที่ ANC ดูแล</div>${ps.length?`<div class="policy-list">${ps.map(p=>{const rs=p.riders||[];return `<div class="policy-card"><div class="row"><div><div class="strong">${escapeHtml(p.PlanName||'-')}</div><div class="muted">กรมธรรม์ ${escapeHtml(p.PolicyNo||'-')}</div></div><div class="status">${escapeHtml(p.PolicyStatus||'ACTIVE')}</div></div>${rs.length?`<div class="riders">${rs.map(r=>`<span class="badge">${escapeHtml(r.RiderName||r.RiderID||'-')}</span>`).join('')}</div>`:''}<div class="footer"><div><div class="mini-label">เริ่มคุ้มครอง</div><div class="mini-value">${formatDate(p.EffectiveDate)}</div></div><div><div class="mini-label">จ่ายเบี้ยครั้งต่อไป</div><div class="mini-value">${formatDate(p.NextPaymentDate)}</div></div></div></div>`}).join('')}</div>`:`<div class="empty">ยังไม่มีข้อมูลกรมธรรม์</div>`}`;}
-    function renderFamily(){const fs=accountData?.family||[];return `<div class="section-title">👨‍👩‍👧‍👦 ครอบครัวของฉัน</div>${fs.length?`<div class="policy-list">${fs.map(m=>`<div class="card"><div class="row"><div><div class="strong">${escapeHtml(m.DisplayName||m.FirstName||'-')}</div><div class="muted">${escapeHtml(relLabel(m.Relationship))}</div></div><div class="status">ACTIVE</div></div><div class="footer"><div><div class="mini-label">วันเกิด</div><div class="mini-value">${formatDate(m.BirthDate)}</div></div></div></div>`).join('')}</div>`:`<div class="empty">ยังไม่มีข้อมูลสมาชิกครอบครัว</div>`}`;}
-    function renderAccount(){const c=accountData?.customer||{};return `<div class="section-title">👤 บัญชีของฉัน</div><div class="card"><div class="strong">${escapeHtml(c.DisplayName||((c.FirstName||'')+' '+(c.LastName||'')).trim()||'-')}</div><div class="muted" style="margin-top:8px">LINE Account เชื่อมต่อแล้ว</div><div class="footer"><div><div class="mini-label">เบอร์โทร</div><div class="mini-value">${escapeHtml(c.Phone||'-')}</div></div><div><div class="mini-label">Email</div><div class="mini-value">${escapeHtml(c.Email||'-')}</div></div></div></div>`;}
+    /* =========================================
+       SCREEN CONTROL
+    ========================================= */
 
-    function handleRegister(){alert('ขั้นตอนสมัคร Account จะเชื่อมต่อใน Phase ถัดไปครับ');}
-    function formatNumber(v){return Number(v||0).toLocaleString('th-TH');}
-    function formatDate(v){if(!v)return '-';const p=String(v).split('-');return p.length===3?`${p[2]}/${p[1]}/${p[0]}`:String(v);}
-    function relLabel(v){return ({SELF:'ตัวเอง',SPOUSE:'คู่สมรส',CHILD:'บุตร',FATHER:'บิดา',MOTHER:'มารดา',OTHER:'สมาชิกครอบครัว'})[String(v||'').toUpperCase()]||'สมาชิกครอบครัว';}
-    function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+    function showLoading(
+      text
+    ) {
+
+      document
+        .getElementById(
+          'loadingText'
+        )
+        .textContent =
+        text;
+
+
+      document
+        .getElementById(
+          'loadingScreen'
+        )
+        .classList.remove(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'errorScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'welcomeScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'app'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'bottomNav'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+    }
+
+
+    function showError(
+      message
+    ) {
+
+      document
+        .getElementById(
+          'loadingScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'errorScreen'
+        )
+        .classList.remove(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'errorMessage'
+        )
+        .textContent =
+        message;
+
+
+      document
+        .getElementById(
+          'welcomeScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'app'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'bottomNav'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+    }
+
+
+    function showWelcome() {
+
+      document
+        .getElementById(
+          'loadingScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'errorScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'welcomeScreen'
+        )
+        .classList.remove(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'app'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'bottomNav'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+    }
+
+
+    function showApp() {
+
+      document
+        .getElementById(
+          'loadingScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'errorScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'welcomeScreen'
+        )
+        .classList.add(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'app'
+        )
+        .classList.remove(
+          'hidden'
+        );
+
+
+      document
+        .getElementById(
+          'bottomNav'
+        )
+        .classList.remove(
+          'hidden'
+        );
+
+    }
+
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+
+    function navigateTo(
+      page
+    ) {
+
+      currentPage =
+        page;
+
+
+      renderPage(
+        page
+      );
+
+
+      scrollToTop();
+
+    }
+
+
+    function updateNavigation(
+      page
+    ) {
+
+      document
+        .querySelectorAll(
+          '.nav-item'
+        )
+        .forEach(
+          button => {
+
+            button.classList.toggle(
+              'active',
+              button.dataset.page === page
+            );
+
+          }
+        );
+
+    }
+
+
+    function renderPage(
+      page
+    ) {
+
+      updateNavigation(
+        page
+      );
+
+
+      const container =
+        document.getElementById(
+          'pageContainer'
+        );
+
+
+      switch (
+        page
+      ) {
+
+        case 'home':
+
+          container.innerHTML =
+            renderHomePage();
+
+          break;
+
+
+        case 'policies':
+
+          container.innerHTML =
+            renderPoliciesPage();
+
+          break;
+
+
+        case 'family':
+
+          container.innerHTML =
+            renderFamilyPage();
+
+          break;
+
+
+        case 'account':
+
+          container.innerHTML =
+            renderAccountPage();
+
+          break;
+
+
+        default:
+
+          container.innerHTML =
+            renderHomePage();
+
+      }
+
+
+      scrollToTop();
+
+    }
+
+
+    function scrollToTop() {
+
+      window.scrollTo(
+        0,
+        0
+      );
+
+
+      document.documentElement.scrollTop =
+        0;
+
+
+      document.body.scrollTop =
+        0;
+
+    }
+
+
+    /* =========================================
+       HOME PAGE
+    ========================================= */
+
+    function renderHomePage() {
+
+      const customer =
+        accountData?.customer ||
+        {};
+
+
+      const savings =
+        getSavingsPolicies();
+
+
+      const coverage =
+        accountData?.coverageSummary ||
+        {};
+
+
+      const family =
+        accountData?.family ||
+        [];
+
+
+      const events =
+        accountData?.events ||
+        [];
+
+
+      const coverageItems =
+        Object.values(
+          coverage
+        )
+        .sort(
+          (
+            a,
+            b
+          ) =>
+            Number(
+              a.DisplayOrder ||
+              999
+            ) -
+            Number(
+              b.DisplayOrder ||
+              999
+            )
+        );
+
+
+      const activeCoverageCount =
+        coverageItems
+          .filter(
+            item =>
+              item.HasCoverage
+          )
+          .length;
+
+
+      const lifeCoverage =
+        getCoverageAmount(
+          coverage,
+          'LIFE'
+        );
+
+
+      const healthCoverage =
+        getCoverageAmount(
+          coverage,
+          'HEALTH'
+        );
+
+
+      return `
+
+        <!-- Header -->
+
+        <div class="account-header">
+
+          ${
+            customer.ProfileImageURL
+
+              ? `
+                <img
+                  class="profile-image"
+                  src="${escapeHtml(
+                    customer.ProfileImageURL
+                  )}"
+                  alt=""
+                >
+              `
+
+              : `
+                <div class="profile-placeholder">
+                  👤
+                </div>
+              `
+          }
+
+
+          <div class="account-greeting">
+
+            <div class="greeting">
+              สวัสดีครับ 👋
+            </div>
+
+
+            <div class="display-name">
+
+              ${escapeHtml(
+                customer.DisplayName ||
+                customer.FirstName ||
+                '-'
+              )}
+
+            </div>
+
+
+            <div class="updated-text">
+
+              ความคุ้มครองที่ ANC Life Planning ดูแล
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Hero -->
+
+        <section class="hero-card">
+
+          <div class="hero-label">
+            ภาพรวมความคุ้มครองของฉัน
+          </div>
+
+
+          <div class="hero-title">
+
+            ${activeCoverageCount > 0
+              ? `
+                ANC ดูแลคุณอยู่
+                ${activeCoverageCount}
+                ด้าน
+              `
+              : `
+                ANC Life Planning
+              `
+            }
+
+          </div>
+
+
+          <div class="hero-grid">
+
+            <div class="hero-stat">
+
+              <div class="hero-stat-label">
+                ❤️ ทุนชีวิต
+              </div>
+
+              <div class="hero-stat-value">
+
+                ${formatNumber(
+                  lifeCoverage
+                )}
+
+                <span class="hero-stat-unit">
+                  บาท
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="hero-stat">
+
+              <div class="hero-stat-label">
+                🏥 ค่ารักษาพยาบาล
+              </div>
+
+              <div class="hero-stat-value">
+
+                ${formatNumber(
+                  healthCoverage
+                )}
+
+                <span class="hero-stat-unit">
+                  บาท
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <!-- Savings -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <span>
+              💰 เงินก้อนจากสะสมทรัพย์
+            </span>
+
+          </div>
+
+
+          <div class="section-subtitle">
+
+            ดูความคืบหน้าของแต่ละกรมธรรม์
+            ว่าจ่ายมาแล้วกี่ปี และเหลืออีกเท่าไร
+
+          </div>
+
+
+          ${
+            savings.length
+
+              ? `
+                <div class="savings-list">
+
+                  ${
+                    savings
+                      .map(
+                        renderSavingsCard
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : `
+                <div class="empty">
+                  ยังไม่มีข้อมูลสะสมทรัพย์
+                  ในระบบ ANC
+                </div>
+              `
+          }
+
+        </section>
+
+
+        <!-- Coverage -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <span>
+              🛡️ ความคุ้มครองที่ ANC ดูแล
+            </span>
+
+          </div>
+
+
+          <div class="section-subtitle">
+
+            แสดงเฉพาะความคุ้มครอง
+            ที่อยู่ภายใต้การดูแลของ ANC
+
+          </div>
+
+
+          ${
+            coverageItems.length
+
+              ? `
+                <div class="coverage-grid">
+
+                  ${
+                    coverageItems
+                      .map(
+                        renderCoverageCard
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : `
+                <div class="empty">
+                  ยังไม่มีข้อมูลความคุ้มครองในระบบ ANC
+                </div>
+              `
+          }
+
+        </section>
+
+
+        <!-- Family -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <span>
+              👨‍👩‍👧‍👦 ครอบครัวของฉัน
+            </span>
+
+
+            ${
+              family.length
+
+                ? `
+                  <span
+                    class="section-link"
+                    onclick="navigateTo('family')"
+                  >
+                    ดูทั้งหมด
+                  </span>
+                `
+
+                : ''
+            }
+
+          </div>
+
+
+          ${
+            family.length
+
+              ? `
+                <div class="family-list">
+
+                  ${
+                    family
+                      .map(
+                        renderFamilyPreview
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : `
+                <div class="empty">
+                  ยังไม่มีข้อมูลสมาชิกครอบครัว
+                </div>
+              `
+          }
+
+        </section>
+
+
+        <!-- Events -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <span>
+              🔔 สิ่งที่ต้องรู้
+            </span>
+
+          </div>
+
+
+          ${
+            events.length
+
+              ? `
+                <div class="event-list">
+
+                  ${
+                    events
+                      .slice(
+                        0,
+                        3
+                      )
+                      .map(
+                        renderEventCard
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : `
+                <div class="empty">
+                  ตอนนี้ยังไม่มีรายการที่ต้องติดตาม
+                </div>
+              `
+          }
+
+        </section>
+
+
+        <!-- Insight -->
+
+        <section class="section">
+
+          <div class="section-title">
+
+            <span>
+              💡 ANC Insight
+            </span>
+
+          </div>
+
+
+          <div class="insight-card">
+
+            <div class="insight-title">
+
+              ภาพรวมของคุณ
+
+            </div>
+
+
+            <div class="insight-text">
+
+              ${
+                activeCoverageCount > 0
+
+                  ? `
+                    ขณะนี้ ANC ดูแลความคุ้มครองให้คุณ
+                    ${activeCoverageCount}
+                    ด้าน
+
+                    <br><br>
+
+                    ระบบจะแสดงข้อมูลเฉพาะ
+                    กรมธรรม์ที่ ANC Life Planning
+                    เป็นผู้ดูแลเท่านั้น
+                  `
+
+                  : `
+                    ขณะนี้ยังไม่มีข้อมูล
+                    ความคุ้มครองในระบบ ANC
+                  `
+              }
+
+            </div>
+
+          </div>
+
+        </section>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       SAVINGS
+    ========================================= */
+
+    function getSavingsPolicies() {
+
+      return (
+        accountData?.policies ||
+        []
+      )
+      .filter(
+        policy =>
+          policy.savings
+      );
+
+    }
+
+
+    function renderSavingsCard(
+      policy
+    ) {
+
+      const savings =
+        policy.savings ||
+        {};
+
+
+      const currentYear =
+        Number(
+          savings.CurrentPaymentYear ||
+          0
+        );
+
+
+      const totalYears =
+        Number(
+          savings.PaymentTermYears ||
+          0
+        );
+
+
+      const progress =
+        Math.min(
+          Math.max(
+            Number(
+              savings.ProgressPercent ||
+              0
+            ),
+            0
+          ),
+          100
+        );
+
+
+      return `
+
+        <div class="savings-card">
+
+          <div class="savings-head">
+
+            <div>
+
+              <div class="savings-name">
+
+                ${escapeHtml(
+                  policy.PlanName ||
+                  '-'
+                )}
+
+              </div>
+
+
+              <div class="savings-caption">
+
+                กรมธรรม์
+                ${escapeHtml(
+                  policy.PolicyNo ||
+                  '-'
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div class="savings-year">
+
+              ${String(
+                currentYear
+              ).padStart(
+                2,
+                '0'
+              )}
+
+              /
+
+              ${String(
+                totalYears
+              ).padStart(
+                2,
+                '0'
+              )}
+
+            </div>
+
+          </div>
+
+
+          <div class="savings-amount">
+
+            ทุนครบสัญญา
+
+            <strong>
+
+              ${formatNumber(
+                savings.MaturityAmount
+              )}
+
+            </strong>
+
+            บาท
+
+          </div>
+
+
+          <div class="progress-track">
+
+            <div
+              class="progress-bar"
+              style="
+                width:${progress}%
+              "
+            ></div>
+
+          </div>
+
+
+          <div class="savings-footer">
+
+            <div>
+
+              <div class="mini-label">
+                จ่ายเบี้ยหมด
+              </div>
+
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  savings.PremiumEndDate
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="mini-label">
+                ครบสัญญา
+              </div>
+
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  savings.MaturityDate
+                )}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       COVERAGE
+    ========================================= */
+
+    function getCoverageAmount(
+      coverage,
+      typeId
+    ) {
+
+      return Number(
+        coverage?.[typeId]?.CoverageAmount ||
+        0
+      );
+
+    }
+
+
+    function renderCoverageCard(
+      item
+    ) {
+
+      const hasCoverage =
+        Boolean(
+          item.HasCoverage
+        );
+
+
+      const amount =
+        Number(
+          item.CoverageAmount ||
+          0
+        );
+
+
+      return `
+
+        <div
+          class="
+            coverage-item
+            ${
+              hasCoverage
+                ? ''
+                : 'no-coverage'
+            }
+          "
+          style="
+            --coverage-color:
+              ${escapeHtml(
+                item.ColorCode ||
+                '#0F4C5C'
+              )}
+          "
+        >
+
+
+          <div class="coverage-icon">
+
+            ${escapeHtml(
+              item.Icon ||
+              '🛡️'
+            )}
+
+          </div>
+
+
+          <div class="coverage-name">
+
+            ${escapeHtml(
+              item.CoverageName ||
+              '-'
+            )}
+
+          </div>
+
+
+          <div class="coverage-value">
+
+            ${
+              hasCoverage
+
+                ? `
+                  ${formatNumber(
+                    amount
+                  )}
+                  ${escapeHtml(
+                    item.Unit ||
+                    ''
+                  )}
+                `
+
+                : `
+                  ยังไม่มีข้อมูลใน ANC
+                `
+            }
+
+          </div>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       POLICY PAGE
+    ========================================= */
+
+    function renderPoliciesPage() {
+
+      const policies =
+        accountData?.policies ||
+        [];
+
+
+      return `
+
+        <div class="section-title">
+
+          <span>
+            🛡️ กรมธรรม์ที่ ANC ดูแล
+          </span>
+
+        </div>
+
+
+        ${
+          policies.length
+
+            ? `
+              <div class="policy-list">
+
+                ${
+                  policies
+                    .map(
+                      renderPolicyCard
+                    )
+                    .join('')
+                }
+
+              </div>
+            `
+
+            : `
+              <div class="empty">
+                ยังไม่มีข้อมูลกรมธรรม์
+              </div>
+            `
+        }
+
+      `;
+
+    }
+
+
+    function renderPolicyCard(
+      policy
+    ) {
+
+      const riders =
+        policy.riders ||
+        [];
+
+
+      return `
+
+        <div class="policy-card">
+
+
+          <div class="policy-head">
+
+            <div>
+
+              <div class="policy-name">
+
+                ${escapeHtml(
+                  policy.PlanName ||
+                  '-'
+                )}
+
+              </div>
+
+
+              <div class="policy-no">
+
+                กรมธรรม์
+                ${escapeHtml(
+                  policy.PolicyNo ||
+                  '-'
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div class="policy-status">
+
+              ${escapeHtml(
+                translatePolicyStatus(
+                  policy.PolicyStatus
+                )
+              )}
+
+            </div>
+
+          </div>
+
+
+          ${
+            riders.length
+
+              ? `
+                <div class="policy-riders">
+
+                  ${
+                    riders
+                      .map(
+                        rider => `
+
+                          <span
+                            class="rider-badge"
+                          >
+
+                            ${escapeHtml(
+                              rider.RiderName ||
+                              rider.RiderID ||
+                              '-'
+                            )}
+
+                          </span>
+
+                        `
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : ''
+          }
+
+
+          <div class="policy-footer">
+
+
+            <div>
+
+              <div class="mini-label">
+                เริ่มคุ้มครอง
+              </div>
+
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  policy.EffectiveDate
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="mini-label">
+                จ่ายเบี้ยครั้งต่อไป
+              </div>
+
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  policy.NextPaymentDate
+                )}
+
+              </div>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      `;
+
+    }
+
+
+    function translatePolicyStatus(
+      status
+    ) {
+
+      const labels = {
+
+        ACTIVE:
+          'คุ้มครองปกติ',
+
+        LAPSED:
+          'สิ้นผล',
+
+        CANCELLED:
+          'ยกเลิก',
+
+        EXPIRED:
+          'หมดอายุ'
+
+      };
+
+
+      return (
+        labels[
+          String(
+            status ||
+            ''
+          ).toUpperCase()
+        ] ||
+        status ||
+        '-'
+      );
+
+    }
+
+
+    /* =========================================
+       FAMILY PAGE
+    ========================================= */
+
+    function renderFamilyPage() {
+
+      const family =
+        accountData?.family ||
+        [];
+
+
+      return `
+
+        <div class="section-title">
+
+          <span>
+            👨‍👩‍👧‍👦 ครอบครัวของฉัน
+          </span>
+
+        </div>
+
+
+        <div class="section-subtitle">
+
+          ข้อมูลสมาชิกครอบครัว
+          และความคุ้มครองที่ ANC ดูแล
+
+        </div>
+
+
+        ${
+          family.length
+
+            ? `
+              <div class="policy-list">
+
+                ${
+                  family
+                    .map(
+                      renderFamilyDetailCard
+                    )
+                    .join('')
+                }
+
+              </div>
+            `
+
+            : `
+              <div class="empty">
+                ยังไม่มีข้อมูลสมาชิกครอบครัว
+              </div>
+            `
+        }
+
+      `;
+
+    }
+
+
+    function renderFamilyPreview(
+      member
+    ) {
+
+      return `
+
+        <div class="family-card">
+
+          <div class="family-avatar">
+            👤
+          </div>
+
+
+          <div class="family-name">
+
+            ${escapeHtml(
+              member.DisplayName ||
+              member.FirstName ||
+              '-'
+            )}
+
+          </div>
+
+
+          <div class="family-relation">
+
+            ${escapeHtml(
+              getRelationshipLabel(
+                member.Relationship
+              )
+            )}
+
+          </div>
+
+
+          <div class="family-coverage">
+
+            ดูข้อมูลความคุ้มครอง
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    function renderFamilyDetailCard(
+      member
+    ) {
+
+      return `
+
+        <div class="card">
+
+          <div class="policy-head">
+
+            <div>
+
+              <div class="policy-name">
+
+                ${escapeHtml(
+                  member.DisplayName ||
+                  member.FirstName ||
+                  '-'
+                )}
+
+              </div>
+
+
+              <div class="policy-no">
+
+                ${escapeHtml(
+                  getRelationshipLabel(
+                    member.Relationship
+                  )
+                )}
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div
+            class="policy-footer"
+            style="
+              border-top:0;
+              margin-top:10px;
+              padding-top:0;
+            "
+          >
+
+            <div>
+
+              <div class="mini-label">
+                วันเกิด
+              </div>
+
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  member.BirthDate
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="mini-label">
+                สถานะ
+              </div>
+
+
+              <div class="mini-value">
+                ACTIVE
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       ACCOUNT PAGE
+    ========================================= */
+
+    function renderAccountPage() {
+
+      const customer =
+        accountData?.customer ||
+        {};
+
+
+      return `
+
+        <div class="section-title">
+
+          <span>
+            👤 บัญชีของฉัน
+          </span>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="policy-name">
+
+            ${escapeHtml(
+              customer.DisplayName ||
+              (
+                customer.FirstName ||
+                ''
+              ) +
+              (
+                customer.FirstName &&
+                customer.LastName
+                  ? ' '
+                  : ''
+              ) +
+              (
+                customer.LastName ||
+                ''
+              )
+            )}
+
+          </div>
+
+
+          <div
+            class="policy-no"
+            style="
+              margin-top:8px;
+            "
+          >
+
+            LINE Account เชื่อมต่อแล้ว
+
+          </div>
+
+
+          <div class="policy-footer">
+
+            <div>
+
+              <div class="mini-label">
+                เบอร์โทร
+              </div>
+
+
+              <div class="mini-value">
+
+                ${escapeHtml(
+                  customer.Phone ||
+                  '-'
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="mini-label">
+                Email
+              </div>
+
+
+              <div class="mini-value">
+
+                ${escapeHtml(
+                  customer.Email ||
+                  '-'
+                )}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       EVENTS
+    ========================================= */
+
+    function renderEventCard(
+      event
+    ) {
+
+      const priority =
+        String(
+          event.Priority ||
+          'INFO'
+        ).toLowerCase();
+
+
+      const remaining =
+        Number(
+          event.RemainingDays ||
+          0
+        );
+
+
+      let dateText =
+        formatDateDisplay(
+          event.EventDate
+        );
+
+
+      if (
+        remaining > 0
+      ) {
+
+        dateText +=
+          ` · อีก ${remaining} วัน`;
+
+      } else {
+
+        dateText +=
+          ' · วันนี้';
+
+      }
+
+
+      return `
+
+        <div class="event-card">
+
+
+          <div
+            class="
+              event-indicator
+              ${priority}
+            "
+          ></div>
+
+
+          <div class="event-content">
+
+
+            <div class="event-title">
+
+              ${escapeHtml(
+                event.Title ||
+                '-'
+              )}
+
+            </div>
+
+
+            <div class="event-description">
+
+              ${escapeHtml(
+                event.Description ||
+                ''
+              )}
+
+            </div>
+
+
+            <div class="event-date">
+
+              ${escapeHtml(
+                dateText
+              )}
+
+            </div>
+
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       REGISTER
+    ========================================= */
+
+    function handleRegister() {
+
+      alert(
+        'ขั้นตอนสมัคร Account จะเชื่อมต่อใน Phase ถัดไปครับ'
+      );
+
+    }
+
+
+    /* =========================================
+       HELPERS
+    ========================================= */
+
+    function formatNumber(
+      value
+    ) {
+
+      const number =
+        Number(
+          value || 0
+        );
+
+
+      return number.toLocaleString(
+        'th-TH'
+      );
+
+    }
+
+
+    function formatDateDisplay(
+      value
+    ) {
+
+      if (!value) {
+        return '-';
+      }
+
+
+      const parts =
+        String(
+          value
+        ).split('-');
+
+
+      if (
+        parts.length !== 3
+      ) {
+
+        return String(
+          value
+        );
+
+      }
+
+
+      return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+    }
+
+
+    function getRelationshipLabel(
+      relationship
+    ) {
+
+      const labels = {
+
+        SELF:
+          'ตัวเอง',
+
+        SPOUSE:
+          'คู่สมรส',
+
+        CHILD:
+          'บุตร',
+
+        FATHER:
+          'บิดา',
+
+        MOTHER:
+          'มารดา',
+
+        OTHER:
+          'สมาชิกครอบครัว'
+
+      };
+
+
+      return (
+        labels[
+          String(
+            relationship ||
+            ''
+          ).toUpperCase()
+        ] ||
+        'สมาชิกครอบครัว'
+      );
+
+    }
+
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ''
+      )
+      .replace(
+        /&/g,
+        '&amp;'
+      )
+      .replace(
+        /</g,
+        '&lt;'
+      )
+      .replace(
+        />/g,
+        '&gt;'
+      )
+      .replace(
+        /"/g,
+        '&quot;'
+      )
+      .replace(
+        /'/g,
+        '&#039;'
+      );
+
+    }
+
   </script>
+
 </body>
 </html>
