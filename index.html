@@ -829,6 +829,275 @@ content="#0F4C5C"
 
     }
 
+    /* =========================================
+       POLICY DETAIL
+    ========================================= */
+    
+    .policy-detail-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .back-button {
+      border: 0;
+      background: #ffffff;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      font-size: 20px;
+      color: #0f4c5c;
+      box-shadow: 0 4px 14px rgba(15, 76, 92, 0.06);
+      flex-shrink: 0;
+    }
+    
+    .detail-title {
+      flex: 1;
+      min-width: 0;
+    }
+    
+    .detail-title-main {
+      font-size: 18px;
+      font-weight: 900;
+      color: #16323a;
+      line-height: 1.35;
+    }
+    
+    .detail-title-sub {
+      margin-top: 4px;
+      color: #9ca3af;
+      font-size: 11px;
+    }
+    
+    .detail-section {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+      box-shadow:
+        0 4px 18px rgba(15, 76, 92, 0.05);
+    }
+    
+    .detail-section-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: #16323a;
+      margin-bottom: 12px;
+    }
+    
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 9px 0;
+      border-bottom: 1px solid #eef2f3;
+    }
+    
+    .detail-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .detail-label {
+      color: #7b8790;
+      font-size: 12px;
+    }
+    
+    .detail-value {
+      text-align: right;
+      color: #16323a;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    
+    .detail-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #e9f7ef;
+      color: #16834b;
+      font-size: 10px;
+      font-weight: 900;
+    }
+    
+    .coverage-detail-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .coverage-detail-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 11px 12px;
+      background: #f7f9fa;
+      border-radius: 13px;
+    }
+    
+    .coverage-detail-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: #465861;
+    }
+    
+    .coverage-detail-value {
+      font-size: 13px;
+      font-weight: 900;
+      color: #16323a;
+      white-space: nowrap;
+    }
+    
+    .waiting-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    
+    .waiting-item {
+      padding: 12px;
+      border-radius: 14px;
+      background: #f7f9fa;
+    }
+    
+    .waiting-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    
+    .waiting-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: #465861;
+    }
+    
+    .waiting-status {
+      font-size: 11px;
+      font-weight: 900;
+    }
+    
+    .waiting-status.done {
+      color: #16834b;
+    }
+    
+    .waiting-status.waiting {
+      color: #d97706;
+    }
+    
+    .waiting-progress {
+      margin-top: 8px;
+      width: 100%;
+      height: 7px;
+      border-radius: 99px;
+      background: #e4eaec;
+      overflow: hidden;
+    }
+    
+    .waiting-progress-bar {
+      height: 100%;
+      border-radius: 99px;
+      background: #d97706;
+    }
+    
+    .deductible-box {
+      background: #f7f9fa;
+      border-radius: 15px;
+      padding: 14px;
+    }
+    
+    .deductible-main {
+      font-size: 24px;
+      font-weight: 900;
+      color: #0f4c5c;
+    }
+    
+    .deductible-caption {
+      margin-top: 2px;
+      color: #9ca3af;
+      font-size: 11px;
+    }
+    
+    .deductible-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .deductible-stat {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 10px;
+    }
+    
+    .copayment-box {
+      border-radius: 15px;
+      padding: 14px;
+      background: #f7f9fa;
+    }
+    
+    .copayment-status-box {
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    
+    .copayment-status-safe {
+      color: #16834b;
+    }
+    
+    .copayment-status-warning {
+      color: #d97706;
+    }
+    
+    .copayment-status-danger {
+      color: #dc2626;
+    }
+    
+    .copayment-condition {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid #e5eaec;
+    }
+    
+    .copayment-condition-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: #465861;
+    }
+    
+    .copayment-condition-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 7px;
+      font-size: 11px;
+      color: #7b8790;
+    }
+    
+    .copayment-pass {
+      color: #16834b;
+      font-weight: 900;
+    }
+    
+    .copayment-fail {
+      color: #9ca3af;
+      font-weight: 800;
+    }
+    
+    @media (max-width: 380px) {
+    
+      .deductible-main {
+        font-size: 21px;
+      }
+    
+    }
+
   </style>
 
 </head>
@@ -1054,6 +1323,10 @@ content="#0F4C5C"
     let accountData = null;
 
     let currentPage = 'home';
+
+    let selectedPolicyId = null;
+
+    let policyDetailReturnPage = 'policies';
 
 
     /* =========================================
@@ -1545,6 +1818,27 @@ content="#0F4C5C"
 
     }
 
+    function openPolicyDetail(
+      policyId,
+      returnPage = 'policies'
+    ) {
+    
+      selectedPolicyId =
+        policyId;
+    
+      policyDetailReturnPage =
+        returnPage;
+    
+      currentPage =
+        'policy-detail';
+    
+      renderPage(
+        'policy-detail'
+      );
+    
+      scrollToTop();
+    }
+
 
     function updateNavigation(
       page
@@ -1618,6 +1912,13 @@ content="#0F4C5C"
 
           break;
 
+        case 'policy-detail':
+
+          container.innerHTML =
+            renderPolicyDetailPage();
+        
+          break;
+
 
         default:
 
@@ -1629,6 +1930,966 @@ content="#0F4C5C"
 
       scrollToTop();
 
+    }
+
+    function renderPolicyCopaymentSection(
+      policy
+    ) {
+    
+      const copayment =
+        policy.copayment;
+    
+    
+      if (!copayment) {
+    
+        return '';
+    
+      }
+    
+    
+      let statusClass =
+        'copayment-status-safe';
+    
+    
+      let statusText =
+        '🟢 ยังไม่เข้าเงื่อนไข Copayment';
+    
+    
+      const nextPercent =
+        Number(
+          copayment.NextYearCopaymentPercent ||
+          0
+        );
+    
+    
+      const condition1 =
+        Boolean(
+          copayment.Condition1Passed
+        );
+    
+    
+      const condition2 =
+        Boolean(
+          copayment.Condition2Passed
+        );
+    
+    
+      if (
+        nextPercent >= 50
+      ) {
+    
+        statusClass =
+          'copayment-status-danger';
+    
+        statusText =
+          '🔴 มีแนวโน้มร่วมจ่าย 50%';
+    
+      } else if (
+        nextPercent >= 30
+      ) {
+    
+        statusClass =
+          'copayment-status-warning';
+    
+        statusText =
+          '🟠 มีแนวโน้มร่วมจ่าย 30%';
+    
+      }
+    
+    
+      return `
+    
+        <section class="detail-section">
+    
+          <div class="detail-section-title">
+    
+            🏥 สถานะ Copayment
+    
+          </div>
+    
+    
+          <div class="copayment-box">
+    
+            <div
+              class="
+                copayment-status-box
+                ${statusClass}
+              "
+            >
+    
+              ${statusText}
+    
+            </div>
+    
+    
+            <div class="detail-label">
+    
+              ข้อมูลปีกรมธรรม์
+              ${escapeHtml(
+                String(
+                  copayment.PolicyYear ||
+                  ''
+                )
+              )}
+    
+            </div>
+    
+    
+            <div class="copayment-condition">
+    
+              <div class="copayment-condition-title">
+    
+                เงื่อนไขที่ 1 — Simple Diseases
+    
+              </div>
+    
+    
+              <div class="copayment-condition-row">
+    
+                <span>
+                  จำนวนเคลม
+                </span>
+    
+                <span>
+                  ${formatNumber(
+                    copayment.SimpleDiseaseClaimCount
+                  )}
+                  / 3 ครั้ง
+                </span>
+    
+              </div>
+    
+    
+              <div class="copayment-condition-row">
+    
+                <span>
+                  อัตราการเคลม
+                </span>
+    
+                <span>
+                  ${formatNumber(
+                    copayment.SimpleDiseaseClaimRatio
+                  )}%
+                  / 200%
+                </span>
+    
+              </div>
+    
+    
+              <div class="copayment-condition-row">
+    
+                <span>
+                  สถานะ
+                </span>
+    
+                <span
+                  class="
+                    ${
+                      condition1
+                        ? 'copayment-pass'
+                        : 'copayment-fail'
+                    }
+                  "
+                >
+    
+                  ${
+                    condition1
+                      ? '✅ ผ่าน'
+                      : 'ยังไม่ถึงเกณฑ์'
+                  }
+    
+                </span>
+    
+              </div>
+    
+            </div>
+    
+    
+            <div class="copayment-condition">
+    
+              <div class="copayment-condition-title">
+    
+                เงื่อนไขที่ 2 — General Diseases
+    
+              </div>
+    
+    
+              <div class="copayment-condition-row">
+    
+                <span>
+                  จำนวนเคลม
+                </span>
+    
+                <span>
+                  ${formatNumber(
+                    copayment.GeneralDiseaseClaimCount
+                  )}
+                  / 3 ครั้ง
+                </span>
+    
+              </div>
+    
+    
+              <div class="copayment-condition-row">
+    
+                <span>
+                  อัตราการเคลม
+                </span>
+    
+                <span>
+                  ${formatNumber(
+                    copayment.GeneralDiseaseClaimRatio
+                  )}%
+                  / 400%
+                </span>
+    
+              </div>
+    
+    
+              <div class="copayment-condition-row">
+    
+                <span>
+                  สถานะ
+                </span>
+    
+                <span
+                  class="
+                    ${
+                      condition2
+                        ? 'copayment-pass'
+                        : 'copayment-fail'
+                    }
+                  "
+                >
+    
+                  ${
+                    condition2
+                      ? '✅ ผ่าน'
+                      : 'ยังไม่ถึงเกณฑ์'
+                  }
+    
+                </span>
+    
+              </div>
+    
+            </div>
+    
+    
+            ${
+              nextPercent > 0
+                ? `
+                  <div
+                    class="detail-row"
+                    style="
+                      margin-top:10px;
+                      border-top:1px solid #e5eaec;
+                      padding-top:12px;
+                    "
+                  >
+    
+                    <div class="detail-label">
+                      แนวโน้มปีกรมธรรม์ถัดไป
+                    </div>
+    
+                    <div
+                      class="detail-value"
+                      style="
+                        font-size:15px;
+                      "
+                    >
+    
+                      ร่วมจ่าย
+                      ${nextPercent}%
+    
+                    </div>
+    
+                  </div>
+                `
+                : ''
+            }
+    
+          </div>
+    
+        </section>
+    
+      `;
+    
+    }
+
+    function renderPolicyDeductibleSection(
+      policy
+    ) {
+    
+      const deductibles =
+        policy.deductibles || [];
+    
+    
+      if (!deductibles.length) {
+    
+        return '';
+    
+      }
+    
+    
+      return `
+    
+        <section class="detail-section">
+    
+          <div class="detail-section-title">
+    
+            🏥 Deductible
+    
+          </div>
+    
+    
+          ${
+            deductibles
+              .map(
+                deductible => `
+    
+                  <div class="deductible-box">
+    
+                    <div class="deductible-main">
+    
+                      ${formatNumber(
+                        deductible.RemainingAmount
+                      )}
+    
+                      บาท
+    
+                    </div>
+    
+    
+                    <div class="deductible-caption">
+    
+                      ยอดรับผิดส่วนแรกคงเหลือ
+    
+                    </div>
+    
+    
+                    <div class="deductible-grid">
+    
+                      <div class="deductible-stat">
+    
+                        <div class="mini-label">
+                          Deductible ต่อปี
+                        </div>
+    
+                        <div class="mini-value">
+    
+                          ${formatNumber(
+                            deductible.AnnualDeductible
+                          )}
+    
+                          บาท
+    
+                        </div>
+    
+                      </div>
+    
+    
+                      <div class="deductible-stat">
+    
+                        <div class="mini-label">
+                          ใช้ไปแล้ว
+                        </div>
+    
+                        <div class="mini-value">
+    
+                          ${formatNumber(
+                            deductible.UsedAmount
+                          )}
+    
+                          บาท
+    
+                        </div>
+    
+                      </div>
+    
+                    </div>
+    
+                  </div>
+    
+                `
+              )
+              .join('')
+          }
+    
+        </section>
+    
+      `;
+    
+    }
+
+    function getWaitingTypeName(
+      type
+    ) {
+    
+      const labels = {
+    
+        GENERAL_HEALTH:
+          'สุขภาพทั่วไป',
+    
+        CANCER:
+          'มะเร็ง',
+    
+        CI:
+          'โรคร้ายแรง',
+    
+        FLEX_CLAIM:
+          'Flex Claim',
+    
+        OTHER:
+          'อื่น ๆ'
+    
+      };
+    
+    
+      return (
+        labels[
+          String(
+            type || ''
+          ).toUpperCase()
+        ] ||
+        type ||
+        'ระยะรอคอย'
+      );
+    
+    }
+
+    function renderWaitingPeriodItem(
+      item
+    ) {
+    
+      const waitingDays =
+        Number(
+          item.WaitingDays || 0
+        );
+    
+    
+      const remainingDays =
+        Number(
+          item.RemainingDays || 0
+        );
+    
+    
+      const completed =
+        Boolean(
+          item.Completed
+        );
+    
+    
+      let progress = 100;
+    
+    
+      if (
+        waitingDays > 0
+      ) {
+    
+        progress =
+          Math.min(
+            Math.max(
+              (
+                waitingDays -
+                remainingDays
+              ) /
+              waitingDays *
+              100,
+              0
+            ),
+            100
+          );
+    
+      }
+    
+    
+      return `
+    
+        <div class="waiting-item">
+    
+          <div class="waiting-head">
+    
+            <div class="waiting-name">
+    
+              ${escapeHtml(
+                getWaitingTypeName(
+                  item.WaitingType
+                )
+              )}
+    
+            </div>
+    
+    
+            <div
+              class="
+                waiting-status
+                ${
+                  completed
+                    ? 'done'
+                    : 'waiting'
+                }
+              "
+            >
+    
+              ${
+                completed
+                  ? '✅ ครบแล้ว'
+                  : `เหลือ ${remainingDays} วัน`
+              }
+    
+            </div>
+    
+          </div>
+    
+    
+          ${
+            !completed
+              ? `
+                <div class="waiting-progress">
+    
+                  <div
+                    class="waiting-progress-bar"
+                    style="
+                      width:${progress}%
+                    "
+                  ></div>
+    
+                </div>
+              `
+              : ''
+          }
+    
+        </div>
+    
+      `;
+    
+    }
+
+    function renderPolicyWaitingSection(
+      policy
+    ) {
+    
+      const waitingPeriods =
+        (policy.riders || [])
+          .flatMap(
+            rider =>
+              rider.waitingPeriods || []
+          );
+    
+    
+      if (!waitingPeriods.length) {
+    
+        return '';
+    
+      }
+    
+    
+      return `
+    
+        <section class="detail-section">
+    
+          <div class="detail-section-title">
+    
+            ⏳ ระยะรอคอย
+    
+          </div>
+    
+    
+          <div class="waiting-list">
+    
+            ${
+              waitingPeriods
+                .map(
+                  renderWaitingPeriodItem
+                )
+                .join('')
+            }
+    
+          </div>
+    
+        </section>
+    
+      `;
+    
+    }
+
+    function getCoverageName(
+      coverageTypeId
+    ) {
+    
+      const coverage =
+        accountData?.coverageSummary?.[
+          coverageTypeId
+        ];
+    
+    
+      if (
+        coverage?.CoverageName
+      ) {
+    
+        return coverage.CoverageName;
+    
+      }
+    
+    
+      const labels = {
+    
+        LIFE:
+          'ทุนชีวิต',
+    
+        HEALTH:
+          'ค่ารักษาพยาบาล',
+    
+        DAILY:
+          'ชดเชยรายวัน',
+    
+        CANCER_HEALTH:
+          'ค่ารักษามะเร็ง',
+    
+        CI:
+          'โรคร้ายแรง',
+    
+        CANCER_CI:
+          'มะเร็งเจอจ่าย',
+    
+        INCOME:
+          'ชดเชยรายได้',
+    
+        SAVINGS:
+          'เงินก้อนสะสมทรัพย์'
+    
+      };
+    
+    
+      return (
+        labels[
+          coverageTypeId
+        ] ||
+        coverageTypeId ||
+        '-'
+      );
+    }
+
+    function renderPolicyDetailPage() {
+
+      const policies =
+        accountData?.policies || [];
+    
+    
+      const policy =
+        policies.find(
+          item =>
+            String(item.PolicyID) ===
+            String(selectedPolicyId)
+        );
+    
+    
+      if (!policy) {
+    
+        return `
+    
+          <div class="empty">
+    
+            ไม่พบข้อมูลกรมธรรม์
+    
+          </div>
+    
+        `;
+    
+      }
+    
+    
+      return `
+    
+        <!-- Header -->
+    
+        <div class="policy-detail-header">
+    
+          <button
+            class="back-button"
+            type="button"
+            onclick="
+              navigateTo(
+                '${escapeHtml(
+                  policyDetailReturnPage
+                )}'
+              )
+            "
+          >
+            ←
+          </button>
+    
+    
+          <div class="detail-title">
+    
+            <div class="detail-title-main">
+    
+              ${escapeHtml(
+                policy.PlanName || '-'
+              )}
+    
+            </div>
+    
+    
+            <div class="detail-title-sub">
+    
+              กรมธรรม์
+              ${escapeHtml(
+                policy.PolicyNo || '-'
+              )}
+    
+            </div>
+    
+          </div>
+    
+        </div>
+    
+    
+        <!-- Status -->
+    
+        <section class="detail-section">
+    
+          <div class="detail-section-title">
+            สถานะกรมธรรม์
+          </div>
+    
+    
+          <div>
+    
+            <span class="detail-status">
+    
+              ${escapeHtml(
+                translatePolicyStatus(
+                  policy.PolicyStatus
+                )
+              )}
+    
+            </span>
+    
+          </div>
+    
+    
+          <div class="detail-row">
+    
+            <div class="detail-label">
+              เริ่มคุ้มครอง
+            </div>
+    
+            <div class="detail-value">
+    
+              ${formatDateDisplay(
+                policy.EffectiveDate
+              )}
+    
+            </div>
+    
+          </div>
+    
+    
+          <div class="detail-row">
+    
+            <div class="detail-label">
+              จ่ายเบี้ยครั้งต่อไป
+            </div>
+    
+            <div class="detail-value">
+    
+              ${formatDateDisplay(
+                policy.NextPaymentDate
+              )}
+    
+            </div>
+    
+          </div>
+    
+    
+          <div class="detail-row">
+    
+            <div class="detail-label">
+              เบี้ยต่อปี
+            </div>
+    
+            <div class="detail-value">
+    
+              ${formatNumber(
+                policy.AnnualPremium
+              )}
+    
+              บาท
+    
+            </div>
+    
+          </div>
+    
+        </section>
+    
+    
+        <!-- Coverage -->
+    
+        <section class="detail-section">
+    
+          <div class="detail-section-title">
+            🛡️ ความคุ้มครอง
+          </div>
+    
+    
+          ${
+            (policy.coverage || []).length
+    
+              ? `
+                <div class="coverage-detail-list">
+    
+                  ${
+                    policy.coverage
+                      .map(
+                        coverage => `
+    
+                          <div class="coverage-detail-item">
+    
+                            <div class="coverage-detail-name">
+    
+                              ${escapeHtml(
+                                getCoverageName(
+                                  coverage.CoverageTypeID
+                                )
+                              )}
+    
+                            </div>
+    
+    
+                            <div class="coverage-detail-value">
+    
+                              ${formatNumber(
+                                coverage.CoverageAmount
+                              )}
+    
+                              ${escapeHtml(
+                                coverage.CoverageUnit === 'BAHT'
+                                  ? 'บาท'
+                                  : coverage.CoverageUnit || ''
+                              )}
+    
+                            </div>
+    
+                          </div>
+    
+                        `
+                      )
+                      .join('')
+                  }
+    
+                </div>
+              `
+    
+              : `
+                <div class="empty">
+                  ยังไม่มีข้อมูลความคุ้มครอง
+                </div>
+              `
+          }
+    
+        </section>
+    
+    
+        <!-- Riders -->
+    
+        <section class="detail-section">
+    
+          <div class="detail-section-title">
+            Rider
+          </div>
+    
+    
+          ${
+            (policy.riders || []).length
+    
+              ? `
+                <div class="coverage-detail-list">
+    
+                  ${
+                    policy.riders
+                      .map(
+                        rider => `
+    
+                          <div class="coverage-detail-item">
+    
+                            <div>
+    
+                              <div class="coverage-detail-name">
+    
+                                ${escapeHtml(
+                                  rider.RiderName ||
+                                  rider.RiderID ||
+                                  '-'
+                                )}
+    
+                              </div>
+    
+    
+                              <div
+                                class="detail-label"
+                                style="margin-top:3px;"
+                              >
+    
+                                ${escapeHtml(
+                                  rider.RiderType ||
+                                  ''
+                                )}
+    
+                              </div>
+    
+                            </div>
+    
+    
+                            <div class="coverage-detail-value">
+    
+                              ${formatNumber(
+                                rider.Coverage
+                              )}
+    
+                            </div>
+    
+                          </div>
+    
+                        `
+                      )
+                      .join('')
+                  }
+    
+                </div>
+              `
+    
+              : `
+                <div class="empty">
+                  กรมธรรม์นี้ไม่มี Rider
+                </div>
+              `
+          }
+    
+        </section>
+    
+    
+        <!-- Waiting Period -->
+    
+        ${renderPolicyWaitingSection(
+          policy
+        )}
+    
+    
+        <!-- Deductible -->
+    
+        ${renderPolicyDeductibleSection(
+          policy
+        )}
+    
+    
+        <!-- Copayment -->
+    
+        ${renderPolicyCopaymentSection(
+          policy
+        )}
+    
+      `;
     }
 
 
@@ -2684,135 +3945,120 @@ content="#0F4C5C"
     }
 
 
-    function renderPolicyCard(
-      policy
-    ) {
+    function renderPolicyCard(policy) {
 
       const riders =
-        policy.riders ||
-        [];
-
-
+        policy.riders || [];
+    
       return `
-
-        <div class="policy-card">
-
+    
+        <div
+          class="policy-card"
+          onclick="
+            openPolicyDetail(
+              '${escapeHtml(policy.PolicyID)}'
+            )
+          "
+          style="cursor:pointer;"
+        >
+    
           <div class="policy-head">
-
+    
             <div>
-
+    
               <div class="policy-name">
-
                 ${escapeHtml(
-                  policy.PlanName ||
-                  '-'
+                  policy.PlanName || '-'
                 )}
-
               </div>
-
-
+    
               <div class="policy-no">
-
                 กรมธรรม์
                 ${escapeHtml(
-                  policy.PolicyNo ||
-                  '-'
+                  policy.PolicyNo || '-'
                 )}
-
               </div>
-
+    
             </div>
-
-
+    
             <div class="policy-status">
-
+    
               ${escapeHtml(
                 translatePolicyStatus(
                   policy.PolicyStatus
                 )
               )}
-
+    
             </div>
-
+    
           </div>
-
-
+    
+    
           ${
             riders.length
-
               ? `
                 <div class="policy-riders">
-
+    
                   ${
                     riders
                       .map(
                         rider => `
-
                           <span class="rider-badge">
-
+    
                             ${escapeHtml(
                               rider.RiderName ||
                               rider.RiderID ||
                               '-'
                             )}
-
+    
                           </span>
-
                         `
                       )
                       .join('')
                   }
-
+    
                 </div>
               `
-
               : ''
           }
-
-
+    
+    
           <div class="policy-footer">
-
+    
             <div>
-
+    
               <div class="mini-label">
                 เริ่มคุ้มครอง
               </div>
-
-
+    
               <div class="mini-value">
-
                 ${formatDateDisplay(
                   policy.EffectiveDate
                 )}
-
               </div>
-
+    
             </div>
-
-
+    
+    
             <div>
-
+    
               <div class="mini-label">
                 จ่ายเบี้ยครั้งต่อไป
               </div>
-
-
+    
               <div class="mini-value">
-
                 ${formatDateDisplay(
                   policy.NextPaymentDate
                 )}
-
               </div>
-
+    
             </div>
-
+    
           </div>
-
+    
         </div>
-
+    
       `;
-
     }
 
 
@@ -3123,6 +4369,13 @@ content="#0F4C5C"
           style="
             box-shadow:none;
             border:1px solid #edf1f2;
+            cursor:pointer;
+          "
+          onclick="
+            openPolicyDetail(
+              '${escapeHtml(policy.PolicyID)}',
+              'family'
+            )
           "
         >
 
