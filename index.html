@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 
 <html lang="th">
+
 <head>
+
   <meta charset="UTF-8">
 
 <meta
@@ -10,7 +12,11 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 >
 
-  <meta name="theme-color" content="#0F4C5C">
+<meta
+name="theme-color"
+content="#0F4C5C"
+
+>
 
   <title>ANC Life Planning</title>
 
@@ -19,6 +25,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
   <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -43,24 +50,14 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
     button {
+      font: inherit;
       cursor: pointer;
     }
 
     .hidden {
       display: none !important;
     }
-
-    /* =========================================
-       APP
-    ========================================= */
 
     .app {
       min-height: 100vh;
@@ -98,7 +95,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       margin: 0 auto 18px;
       border-radius: 20px;
       background: #0f4c5c;
-      color: #ffffff;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -137,10 +134,11 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     /* =========================================
-       ERROR
+       ERROR / WELCOME
     ========================================= */
 
-    .error-screen {
+    .error-screen,
+    .welcome {
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -148,32 +146,41 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       padding: 24px;
     }
 
-    .error-box {
+    .error-box,
+    .welcome-box {
       width: 100%;
-      max-width: 380px;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 28px 22px;
+      max-width: 420px;
+      background: #fff;
+      border-radius: 22px;
+      padding: 30px 22px;
       text-align: center;
       box-shadow:
         0 8px 30px rgba(15, 76, 92, 0.08);
     }
 
-    .error-icon {
-      font-size: 42px;
+    .error-icon,
+    .welcome-icon {
+      font-size: 44px;
       margin-bottom: 12px;
     }
 
-    .error-title {
-      font-size: 20px;
+    .error-title,
+    .welcome-title {
+      font-size: 21px;
       font-weight: 800;
-      margin-bottom: 8px;
+      color: #16323a;
+      margin-bottom: 10px;
     }
 
-    .error-message {
+    .welcome-title {
+      color: #0f4c5c;
+    }
+
+    .error-message,
+    .welcome-text {
       color: #6b7280;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.8;
       white-space: pre-line;
       word-break: break-word;
     }
@@ -187,54 +194,13 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
     .btn-primary {
       margin-top: 18px;
+      width: 100%;
       background: #0f4c5c;
-      color: #ffffff;
-      width: 100%;
+      color: #fff;
     }
 
     /* =========================================
-       WELCOME
-    ========================================= */
-
-    .welcome {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-
-    .welcome-box {
-      width: 100%;
-      max-width: 420px;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 30px 22px;
-      text-align: center;
-      box-shadow:
-        0 8px 30px rgba(15, 76, 92, 0.08);
-    }
-
-    .welcome-icon {
-      font-size: 48px;
-      margin-bottom: 14px;
-    }
-
-    .welcome-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: #0f4c5c;
-      margin-bottom: 10px;
-    }
-
-    .welcome-text {
-      color: #6b7280;
-      font-size: 14px;
-      line-height: 1.8;
-    }
-
-    /* =========================================
-       HOME HEADER
+       HEADER
     ========================================= */
 
     .account-header {
@@ -273,7 +239,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     .greeting {
       font-size: 13px;
       color: #6b7280;
-      margin-bottom: 2px;
     }
 
     .display-name {
@@ -292,16 +257,17 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     /* =========================================
-       HERO SUMMARY
+       HERO
     ========================================= */
 
     .hero-card {
-      background: linear-gradient(
-        135deg,
-        #0f4c5c,
-        #17697b
-      );
-      color: #ffffff;
+      background:
+        linear-gradient(
+          135deg,
+          #0f4c5c,
+          #17697b
+        );
+      color: #fff;
       border-radius: 22px;
       padding: 20px;
       margin-bottom: 18px;
@@ -328,14 +294,14 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     .hero-stat {
-      background: rgba(255, 255, 255, 0.10);
+      background: rgba(255,255,255,0.10);
       border-radius: 15px;
       padding: 13px;
     }
 
     .hero-stat-label {
       font-size: 11px;
-      opacity: 0.78;
+      opacity: 0.8;
     }
 
     .hero-stat-value {
@@ -346,8 +312,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
     .hero-stat-unit {
       font-size: 11px;
-      opacity: 0.78;
-      margin-left: 2px;
+      opacity: 0.8;
     }
 
     /* =========================================
@@ -377,10 +342,31 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     .section-link {
-      font-size: 12px;
       color: #0f4c5c;
+      font-size: 12px;
       font-weight: 800;
       cursor: pointer;
+    }
+
+    /* =========================================
+       CARD
+    ========================================= */
+
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow:
+        0 4px 18px rgba(15, 76, 92, 0.06);
+    }
+
+    .empty {
+      background: #fff;
+      border-radius: 18px;
+      padding: 22px 16px;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 13px;
     }
 
     /* =========================================
@@ -394,7 +380,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     .savings-card {
-      background: #ffffff;
+      background: #fff;
       border-radius: 18px;
       padding: 16px;
       box-shadow:
@@ -414,6 +400,12 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       color: #16323a;
     }
 
+    .savings-policy-no {
+      margin-top: 4px;
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
     .savings-year {
       color: #0f4c5c;
       font-size: 17px;
@@ -422,13 +414,13 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     .savings-caption {
-      margin-top: 5px;
-      font-size: 11px;
+      margin-top: 4px;
+      font-size: 10px;
       color: #9ca3af;
     }
 
     .savings-amount {
-      margin-top: 10px;
+      margin-top: 11px;
       font-size: 13px;
       color: #4b5563;
     }
@@ -436,6 +428,22 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     .savings-amount strong {
       color: #16323a;
       font-size: 15px;
+    }
+
+    .savings-term {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .term-badge {
+      padding: 5px 8px;
+      border-radius: 999px;
+      background: #eef4f5;
+      color: #45616a;
+      font-size: 10px;
+      font-weight: 700;
     }
 
     .progress-track {
@@ -460,6 +468,18 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       margin-top: 12px;
     }
 
+    .mini-label {
+      font-size: 11px;
+      color: #9ca3af;
+    }
+
+    .mini-value {
+      margin-top: 3px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #16323a;
+    }
+
     /* =========================================
        COVERAGE
     ========================================= */
@@ -474,7 +494,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       min-height: 112px;
       border-radius: 17px;
       padding: 14px;
-      background: #ffffff;
+      background: #fff;
       border: 1px solid #edf1f2;
       border-left: 4px solid var(
         --coverage-color,
@@ -532,11 +552,12 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
     .family-card {
       flex: 0 0 155px;
-      background: #ffffff;
+      background: #fff;
       border-radius: 17px;
       padding: 14px;
       box-shadow:
         0 4px 18px rgba(15, 76, 92, 0.06);
+      cursor: pointer;
     }
 
     .family-avatar {
@@ -583,7 +604,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       display: flex;
       gap: 12px;
       align-items: flex-start;
-      background: #ffffff;
+      background: #fff;
       border-radius: 16px;
       padding: 14px;
       box-shadow:
@@ -660,7 +681,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     /* =========================================
-       POLICY PAGE
+       POLICY
     ========================================= */
 
     .policy-list {
@@ -670,7 +691,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     .policy-card {
-      background: #ffffff;
+      background: #fff;
       border-radius: 18px;
       padding: 16px;
       box-shadow:
@@ -732,6 +753,18 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
     /* =========================================
+       FAMILY DETAIL
+    ========================================= */
+
+    .family-policy-title {
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f4c5c;
+    }
+
+    /* =========================================
        BOTTOM NAV
     ========================================= */
 
@@ -741,7 +774,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       right: 0;
       bottom: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.97);
+      background: rgba(255,255,255,0.97);
       border-top: 1px solid #e6ecee;
       backdrop-filter: blur(10px);
     }
@@ -775,10 +808,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       font-size: 21px;
       line-height: 1;
     }
-
-    /* =========================================
-       MOBILE
-    ========================================= */
 
     @media (max-width: 380px) {
 
@@ -911,7 +940,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
   </div>
 
   <button
-    id="registerButton"
     class="btn btn-primary"
     type="button"
     onclick="handleRegister()"
@@ -943,7 +971,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
   </div>
 
   <!-- ========================================
-       BOTTOM NAV
+       NAV
   ======================================== -->
 
   <nav
@@ -1010,16 +1038,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
     const CONFIG = {
 
-      /*
-       * LIFF ID ของ ANC Account
-       */
       LIFF_ID:
         '2011442900-xcPpvfIE',
 
-
-      /*
-       * Apps Script Account API
-       */
       API_URL:
         'https://script.google.com/macros/s/AKfycbxiaKpavAocuYtKoB_YYke9I_J1r9uTkEmOmcdxb9byJI_15Elzh8qovqMGlbhqqzEq/exec'
 
@@ -1051,7 +1072,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
         validateConfig();
 
-
         showLoading(
           'กำลังเริ่มต้นระบบ...'
         );
@@ -1069,17 +1089,13 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
         await liff.init({
-
           liffId:
             CONFIG.LIFF_ID
-
         });
 
 
         /*
          * External Browser
-         *
-         * ถ้ายังไม่ได้ Login
          */
         if (
           !liff.isInClient() &&
@@ -1097,7 +1113,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
         /*
-         * อ่าน ID Token
+         * ID Token
          */
         const idToken =
           liff.getIDToken();
@@ -1113,7 +1129,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
         /*
-         * เรียก API
+         * Account API
          */
         showLoading(
           'กำลังโหลดข้อมูลของคุณ...'
@@ -1140,7 +1156,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
         /*
-         * ไม่พบ Customer
+         * ยังไม่มีข้อมูล Customer
          */
         if (
           !result.registered
@@ -1157,20 +1173,15 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         }
 
 
-        /*
-         * พบ Customer
-         */
         accountData =
           result.account || {};
 
 
         showApp();
 
-
         renderPage(
           'home'
         );
-
 
         scrollToTop();
 
@@ -1181,7 +1192,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           'initAccount error:',
           error
         );
-
 
         showError(
           error?.message ||
@@ -1201,11 +1211,12 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
       if (
         !CONFIG.LIFF_ID ||
-        CONFIG.LIFF_ID === 'YOUR_LIFF_ID'
+        CONFIG.LIFF_ID ===
+          'YOUR_LIFF_ID'
       ) {
 
         throw new Error(
-          'กรุณาใส่ LIFF ID ของ ANC Account ใน index.html'
+          'กรุณาใส่ LIFF ID ของ ANC Account'
         );
 
       }
@@ -1239,14 +1250,11 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         await fetch(
           CONFIG.API_URL,
           {
-            method:
-              'POST',
+            method: 'POST',
 
             headers: {
-
               'Content-Type':
                 'text/plain;charset=utf-8'
-
             },
 
             body:
@@ -1256,9 +1264,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
                 idToken:
                   idToken
-
               })
-
           }
         );
 
@@ -1301,7 +1307,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
     /* =========================================
-       SCREEN CONTROL
+       SCREEN
     ========================================= */
 
     function showLoading(
@@ -1531,11 +1537,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       currentPage =
         page;
 
-
       renderPage(
         page
       );
-
 
       scrollToTop();
 
@@ -1635,10 +1639,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         0
       );
 
-
       document.documentElement.scrollTop =
         0;
-
 
       document.body.scrollTop =
         0;
@@ -1647,7 +1649,48 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
     /* =========================================
-       HOME PAGE
+       OWN POLICIES
+    ========================================= */
+
+    function getOwnPolicies() {
+
+      return (
+        accountData?.policies ||
+        []
+      )
+      .filter(
+        policy =>
+          !policy.FamilyMemberID
+      );
+
+    }
+
+
+    function getFamilyPolicies(
+      familyMemberId
+    ) {
+
+      return (
+        accountData?.policies ||
+        []
+      )
+      .filter(
+        policy =>
+          String(
+            policy.FamilyMemberID ||
+            ''
+          ) ===
+          String(
+            familyMemberId ||
+            ''
+          )
+      );
+
+    }
+
+
+    /* =========================================
+       HOME
     ========================================= */
 
     function renderHomePage() {
@@ -1657,13 +1700,20 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         {};
 
 
+      const ownPolicies =
+        getOwnPolicies();
+
+
       const savings =
-        getSavingsPolicies();
+        ownPolicies
+          .filter(
+            policy =>
+              policy.savings
+          );
 
 
       const coverage =
-        accountData?.coverageSummary ||
-        {};
+        buildOwnCoverageSummary();
 
 
       const family =
@@ -1681,10 +1731,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           coverage
         )
         .sort(
-          (
-            a,
-            b
-          ) =>
+          (a, b) =>
             Number(
               a.DisplayOrder ||
               999
@@ -1765,9 +1812,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
             <div class="updated-text">
-
               ความคุ้มครองที่ ANC Life Planning ดูแล
-
             </div>
 
           </div>
@@ -1786,15 +1831,18 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
           <div class="hero-title">
 
-            ${activeCoverageCount > 0
-              ? `
-                ANC ดูแลคุณอยู่
-                ${activeCoverageCount}
-                ด้าน
-              `
-              : `
-                ANC Life Planning
-              `
+            ${
+              activeCoverageCount > 0
+
+                ? `
+                  ANC ดูแลคุณอยู่
+                  ${activeCoverageCount}
+                  ด้าน
+                `
+
+                : `
+                  ANC Life Planning
+                `
             }
 
           </div>
@@ -1863,8 +1911,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
           <div class="section-subtitle">
 
-            ดูความคืบหน้าของแต่ละกรมธรรม์
-            ว่าจ่ายมาแล้วกี่ปี และเหลืออีกเท่าไร
+            เฉพาะกรมธรรม์ของคุณ
+            ไม่รวมกรมธรรม์ของสมาชิกครอบครัว
 
           </div>
 
@@ -1904,7 +1952,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           <div class="section-title">
 
             <span>
-              🛡️ ความคุ้มครองที่ ANC ดูแล
+              🛡️ ความคุ้มครองของฉัน
             </span>
 
           </div>
@@ -1913,7 +1961,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           <div class="section-subtitle">
 
             แสดงเฉพาะความคุ้มครอง
-            ที่อยู่ภายใต้การดูแลของ ANC
+            ของเจ้าของ Account
 
           </div>
 
@@ -1937,7 +1985,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
               : `
                 <div class="empty">
-                  ยังไม่มีข้อมูลความคุ้มครองในระบบ ANC
+                  ยังไม่มีข้อมูลความคุ้มครอง
+                  ในระบบ ANC
                 </div>
               `
           }
@@ -2022,10 +2071,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
                   ${
                     events
-                      .slice(
-                        0,
-                        3
-                      )
+                      .slice(0, 3)
                       .map(
                         renderEventCard
                       )
@@ -2061,9 +2107,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           <div class="insight-card">
 
             <div class="insight-title">
-
               ภาพรวมของคุณ
-
             </div>
 
 
@@ -2079,14 +2123,15 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
                     <br><br>
 
-                    ระบบจะแสดงข้อมูลเฉพาะ
+                    ระบบแสดงข้อมูลเฉพาะ
                     กรมธรรม์ที่ ANC Life Planning
-                    เป็นผู้ดูแลเท่านั้น
+                    เป็นผู้ดูแล
                   `
 
                   : `
                     ขณะนี้ยังไม่มีข้อมูล
-                    ความคุ้มครองในระบบ ANC
+                    ความคุ้มครองของคุณ
+                    ในระบบ ANC
                   `
               }
 
@@ -2102,22 +2147,171 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
     /* =========================================
-       SAVINGS
+       BUILD OWN COVERAGE
     ========================================= */
 
-    function getSavingsPolicies() {
+    function buildOwnCoverageSummary() {
 
-      return (
-        accountData?.policies ||
-        []
+      const ownPolicies =
+        getOwnPolicies();
+
+
+      const ownPolicyIds =
+        new Set(
+          ownPolicies.map(
+            policy =>
+              String(
+                policy.PolicyID
+              )
+          )
+        );
+
+
+      const sourceCoverage =
+        (
+          accountData?.coverageSummary ||
+          {}
+        );
+
+
+      /*
+       * coverageSummary จาก API
+       * อาจรวมทุก Policy ของ Customer
+       *
+       * ดังนั้นสร้างใหม่จาก PolicyCoverage
+       * ในแต่ละ Policy เพื่อให้ Summary
+       * เป็นของตัวเองเท่านั้น
+       */
+      const result = {};
+
+
+      /*
+       * เริ่มจาก Coverage Master
+       */
+      ownPolicies
+        .flatMap(
+          policy =>
+            policy.coverage || []
+        )
+        .forEach(
+          item => {
+
+            const typeId =
+              String(
+                item.CoverageTypeID ||
+                ''
+              );
+
+            if (!typeId) {
+              return;
+            }
+
+
+            if (!result[typeId]) {
+
+              const master =
+                sourceCoverage[typeId] ||
+                {};
+
+              result[typeId] = {
+
+                CoverageTypeID:
+                  typeId,
+
+                CoverageName:
+                  master.CoverageName ||
+                  typeId,
+
+                Unit:
+                  item.CoverageUnit ||
+                  master.Unit ||
+                  'บาท',
+
+                Icon:
+                  master.Icon ||
+                  '🛡️',
+
+                ColorCode:
+                  master.ColorCode ||
+                  '#0F4C5C',
+
+                DisplayOrder:
+                  master.DisplayOrder ||
+                  999,
+
+                CoverageAmount:
+                  0,
+
+                HasCoverage:
+                  false
+
+              };
+
+            }
+
+
+            result[typeId]
+              .CoverageAmount +=
+              Number(
+                item.CoverageAmount ||
+                0
+              );
+
+
+            if (
+              result[typeId]
+                .CoverageAmount > 0
+            ) {
+
+              result[typeId]
+                .HasCoverage = true;
+
+            }
+
+          }
+        );
+
+
+      /*
+       * ให้ Category ที่ยังไม่มี
+       * แสดงเป็นสีเทาด้วย
+       */
+      Object.keys(
+        sourceCoverage
       )
-      .filter(
-        policy =>
-          policy.savings
+      .forEach(
+        typeId => {
+
+          if (
+            !result[typeId]
+          ) {
+
+            result[typeId] = {
+
+              ...sourceCoverage[typeId],
+
+              CoverageAmount:
+                0,
+
+              HasCoverage:
+                false
+
+            };
+
+          }
+
+        }
       );
+
+
+      return result;
 
     }
 
+
+    /* =========================================
+       SAVINGS
+    ========================================= */
 
     function renderSavingsCard(
       policy
@@ -2135,24 +2329,37 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         );
 
 
-      const totalYears =
+      const paymentTermYears =
         Number(
           savings.PaymentTermYears ||
           0
         );
 
 
-      const progress =
-        Math.min(
-          Math.max(
-            Number(
-              savings.ProgressPercent ||
-              0
-            ),
-            0
-          ),
-          100
+      const maturityTermYears =
+        Number(
+          savings.MaturityTermYears ||
+          paymentTermYears
         );
+
+
+      /*
+       * Progress = ปีที่จ่ายเบี้ย / จำนวนปีที่จ่ายเบี้ย
+       */
+      const progress =
+        paymentTermYears > 0
+
+          ? Math.min(
+              Math.max(
+                currentYear /
+                paymentTermYears *
+                100,
+                0
+              ),
+              100
+            )
+
+          : 0;
 
 
       return `
@@ -2173,7 +2380,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
               </div>
 
 
-              <div class="savings-caption">
+              <div class="savings-policy-no">
 
                 กรมธรรม์
                 ${escapeHtml(
@@ -2186,23 +2393,33 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             </div>
 
 
-            <div class="savings-year">
+            <div>
 
-              ${String(
-                currentYear
-              ).padStart(
-                2,
-                '0'
-              )}
+              <div class="savings-year">
 
-              /
+                ปีที่
+                ${String(
+                  currentYear
+                ).padStart(
+                  2,
+                  '0'
+                )}
 
-              ${String(
-                totalYears
-              ).padStart(
-                2,
-                '0'
-              )}
+                /
+
+                ${String(
+                  paymentTermYears
+                ).padStart(
+                  2,
+                  '0'
+                )}
+
+              </div>
+
+
+              <div class="savings-caption">
+                งวดการจ่ายเบี้ย
+              </div>
 
             </div>
 
@@ -2222,6 +2439,28 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             </strong>
 
             บาท
+
+          </div>
+
+
+          <div class="savings-term">
+
+            <span class="term-badge">
+
+              จ่ายเบี้ย
+              ${paymentTermYears}
+              ปี
+
+            </span>
+
+
+            <span class="term-badge">
+
+              สัญญา
+              ${maturityTermYears}
+              ปี
+
+            </span>
 
           </div>
 
@@ -2340,12 +2579,10 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
           <div class="coverage-icon">
-
             ${escapeHtml(
               item.Icon ||
               '🛡️'
             )}
-
           </div>
 
 
@@ -2390,14 +2627,13 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
     /* =========================================
-       POLICY PAGE
+       POLICY PAGE — ONLY SELF
     ========================================= */
 
     function renderPoliciesPage() {
 
       const policies =
-        accountData?.policies ||
-        [];
+        getOwnPolicies();
 
 
       return `
@@ -2405,8 +2641,16 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <div class="section-title">
 
           <span>
-            🛡️ กรมธรรม์ที่ ANC ดูแล
+            🛡️ กรมธรรม์ของฉัน
           </span>
+
+        </div>
+
+
+        <div class="section-subtitle">
+
+          แสดงเฉพาะกรมธรรม์
+          ที่ ANC ดูแลและเป็นของเจ้าของ Account
 
         </div>
 
@@ -2430,7 +2674,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
             : `
               <div class="empty">
-                ยังไม่มีข้อมูลกรมธรรม์
+                ยังไม่มีข้อมูลกรมธรรม์ของคุณ
               </div>
             `
         }
@@ -2452,7 +2696,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       return `
 
         <div class="policy-card">
-
 
           <div class="policy-head">
 
@@ -2505,9 +2748,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
                       .map(
                         rider => `
 
-                          <span
-                            class="rider-badge"
-                          >
+                          <span class="rider-badge">
 
                             ${escapeHtml(
                               rider.RiderName ||
@@ -2530,7 +2771,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
           <div class="policy-footer">
-
 
             <div>
 
@@ -2567,9 +2807,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
             </div>
 
-
           </div>
-
 
         </div>
 
@@ -2637,8 +2875,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
         <div class="section-subtitle">
 
-          ข้อมูลสมาชิกครอบครัว
-          และความคุ้มครองที่ ANC ดูแล
+          ดูข้อมูลเฉพาะสมาชิกครอบครัว
+          และกรมธรรม์ที่ ANC ดูแล
 
         </div>
 
@@ -2676,9 +2914,24 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       member
     ) {
 
+      const policies =
+        getFamilyPolicies(
+          member.FamilyMemberID
+        );
+
+
       return `
 
-        <div class="family-card">
+        <div
+          class="family-card"
+          onclick="
+            showFamilyMember(
+              '${escapeHtml(
+                member.FamilyMemberID
+              )}'
+            )
+          "
+        >
 
           <div class="family-avatar">
             👤
@@ -2709,7 +2962,11 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
           <div class="family-coverage">
 
-            ดูข้อมูลความคุ้มครอง
+            ${
+              policies.length
+                ? `${policies.length} กรมธรรม์`
+                : 'ยังไม่มีกรมธรรม์ใน ANC'
+            }
 
           </div>
 
@@ -2723,6 +2980,12 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     function renderFamilyDetailCard(
       member
     ) {
+
+      const policies =
+        getFamilyPolicies(
+          member.FamilyMemberID
+        );
+
 
       return `
 
@@ -2788,12 +3051,185 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             <div>
 
               <div class="mini-label">
-                สถานะ
+                กรมธรรม์ ANC
               </div>
 
 
               <div class="mini-value">
-                ACTIVE
+
+                ${policies.length}
+
+                ฉบับ
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="family-policy-title">
+
+            🛡️ กรมธรรม์ของ
+            ${escapeHtml(
+              member.DisplayName ||
+              member.FirstName ||
+              'สมาชิก'
+            )}
+
+          </div>
+
+
+          ${
+            policies.length
+
+              ? `
+                <div class="policy-list">
+
+                  ${
+                    policies
+                      .map(
+                        renderFamilyPolicyCard
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : `
+                <div class="empty">
+                  ยังไม่มีกรมธรรม์ของสมาชิกนี้
+                  ในระบบ ANC
+                </div>
+              `
+          }
+
+        </div>
+
+      `;
+
+    }
+
+
+    function renderFamilyPolicyCard(
+      policy
+    ) {
+
+      return `
+
+        <div
+          class="policy-card"
+          style="
+            box-shadow:none;
+            border:1px solid #edf1f2;
+          "
+        >
+
+          <div class="policy-head">
+
+            <div>
+
+              <div class="policy-name">
+
+                ${escapeHtml(
+                  policy.PlanName ||
+                  '-'
+                )}
+
+              </div>
+
+
+              <div class="policy-no">
+
+                กรมธรรม์
+                ${escapeHtml(
+                  policy.PolicyNo ||
+                  '-'
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div class="policy-status">
+
+              ${escapeHtml(
+                translatePolicyStatus(
+                  policy.PolicyStatus
+                )
+              )}
+
+            </div>
+
+          </div>
+
+
+          ${
+            (policy.riders || []).length
+
+              ? `
+                <div class="policy-riders">
+
+                  ${
+                    policy.riders
+                      .map(
+                        rider => `
+
+                          <span class="rider-badge">
+
+                            ${escapeHtml(
+                              rider.RiderName ||
+                              rider.RiderID ||
+                              '-'
+                            )}
+
+                          </span>
+
+                        `
+                      )
+                      .join('')
+                  }
+
+                </div>
+              `
+
+              : ''
+          }
+
+
+          <div class="policy-footer">
+
+            <div>
+
+              <div class="mini-label">
+                เริ่มคุ้มครอง
+              </div>
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  policy.EffectiveDate
+                )}
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <div class="mini-label">
+                จ่ายครั้งต่อไป
+              </div>
+
+              <div class="mini-value">
+
+                ${formatDateDisplay(
+                  policy.NextPaymentDate
+                )}
+
               </div>
 
             </div>
@@ -2807,8 +3243,42 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
     }
 
 
+    function showFamilyMember(
+      familyMemberId
+    ) {
+
+      navigateTo(
+        'family'
+      );
+
+      setTimeout(
+        () => {
+
+          const target =
+            document.querySelector(
+              `[data-family-member="${CSS.escape(
+                familyMemberId
+              )}"]`
+            );
+
+          if (target) {
+
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+
+          }
+
+        },
+        50
+      );
+
+    }
+
+
     /* =========================================
-       ACCOUNT PAGE
+       ACCOUNT
     ========================================= */
 
     function renderAccountPage() {
@@ -2961,7 +3431,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
         <div class="event-card">
 
-
           <div
             class="
               event-indicator
@@ -2971,7 +3440,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
           <div class="event-content">
-
 
             <div class="event-title">
 
@@ -3000,7 +3468,6 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
               )}
 
             </div>
-
 
           </div>
 
@@ -3032,13 +3499,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       value
     ) {
 
-      const number =
-        Number(
-          value || 0
-        );
-
-
-      return number.toLocaleString(
+      return Number(
+        value || 0
+      ).toLocaleString(
         'th-TH'
       );
 
@@ -3055,9 +3518,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
 
       const parts =
-        String(
-          value
-        ).split('-');
+        String(value)
+          .split('-');
 
 
       if (
@@ -3149,4 +3611,5 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
   </script>
 
 </body>
+
 </html>
