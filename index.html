@@ -6767,7 +6767,7 @@ content="#0F4C5C"
     }
 
     function formatDateDisplay(value) {
-
+    
       if (!value) {
         return '-';
       }
@@ -6783,7 +6783,7 @@ content="#0F4C5C"
     
     
       return date.toLocaleDateString(
-        'th-TH',
+        'th-TH-u-ca-buddhist',
         {
           day: '2-digit',
           month: '2-digit',
@@ -6792,6 +6792,7 @@ content="#0F4C5C"
       );
     
     }
+
 
     /* =========================================
        EVENTS
