@@ -4014,6 +4014,9 @@ content="#0F4C5C"
     
         GENERAL_HEALTH:
           'สุขภาพทั่วไป',
+
+        OPD_EMERGENCY:
+          'OPD อุบัติเหตุฉุกเฉินภายใน 24 ชม.',
     
         CANCER:
           'มะเร็ง',
@@ -4021,8 +4024,8 @@ content="#0F4C5C"
         CI:
           'โรคร้ายแรง',
     
-        FLEX_CLAIM:
-          'Flex Claim',
+        FAX_CLAIM:
+          'Fax Claim (ไม่ต้องสำรองจ่าย สำหรับโรคทั่วไป)',
     
         OTHER:
           'อื่น ๆ'
@@ -6768,7 +6771,7 @@ content="#0F4C5C"
 
 
     function formatDateDisplay(value) {
-      console.log(value);
+
       if (!value) {
         return '-';
       }
