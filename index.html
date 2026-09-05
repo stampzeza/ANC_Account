@@ -2490,6 +2490,78 @@ content="#0F4C5C"
       color: #6b7280;
     
     }
+
+    /* =====================================
+       FAMILY POLICY OWNER
+    ===================================== */
+    
+    .family-policy-owner {
+    
+      display: flex;
+    
+      align-items: center;
+    
+      gap: 9px;
+    
+      margin-top: 9px;
+    
+      padding-top: 9px;
+    
+      border-top: 1px solid #f0f0f0;
+    
+    }
+    
+    
+    .family-policy-avatar {
+    
+      width: 32px;
+    
+      height: 32px;
+    
+      border-radius: 50%;
+    
+      background: #f3f4f6;
+    
+      display: flex;
+    
+      align-items: center;
+    
+      justify-content: center;
+    
+      font-size: 16px;
+    
+      flex-shrink: 0;
+    
+    }
+    
+    
+    .family-policy-owner-info {
+    
+      min-width: 0;
+    
+    }
+    
+    
+    .family-policy-owner-name {
+    
+      font-size: 12px;
+    
+      font-weight: 700;
+    
+      color: #374151;
+    
+    }
+    
+    
+    .family-policy-owner-relation {
+    
+      margin-top: 1px;
+    
+      font-size: 10px;
+    
+      color: #9ca3af;
+    
+    }
     
   </style>
 
@@ -4579,6 +4651,32 @@ content="#0F4C5C"
             String(item.PolicyID) ===
             String(selectedPolicyId)
         );
+
+      /* =====================================
+         FAMILY MEMBER
+      ===================================== */
+      
+      let familyMember = null;
+      
+      
+      const familyMemberId =
+        String(
+          policy.FamilyMemberID || ''
+        ).trim();
+      
+      
+      if (familyMemberId) {
+      
+        familyMember =
+          (accountData?.family || [])
+            .find(member =>
+              String(
+                member.FamilyMemberID || ''
+              ).trim() ===
+              familyMemberId
+            ) || null;
+      
+      }
     
     
       if (!policy) {
@@ -4636,6 +4734,52 @@ content="#0F4C5C"
               )}
     
             </div>
+
+            ${
+              familyMember
+                ? `
+                  <div class="family-policy-owner">
+            
+                    <div class="family-policy-avatar">
+                      👤
+                    </div>
+            
+                    <div class="family-policy-owner-info">
+            
+                      <div class="family-policy-owner-name">
+            
+                        ${escapeHtml(
+                          familyMember.DisplayName ||
+                          (
+                            (familyMember.FirstName || '') +
+                            (
+                              familyMember.FirstName &&
+                              familyMember.LastName
+                                ? ' '
+                                : ''
+                            ) +
+                            (familyMember.LastName || '')
+                          ) ||
+                          '-'
+                        )}
+            
+                      </div>
+            
+            
+                      <div class="family-policy-owner-relation">
+            
+                        ${escapeHtml(
+                          familyMember.Relationship || ''
+                        )}
+            
+                      </div>
+            
+                    </div>
+            
+                  </div>
+                `
+                : ''
+            }
     
           </div>
     
