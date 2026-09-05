@@ -4740,36 +4740,7 @@ content="#0F4C5C"
                     policy.coverage
                       .map(
                         (coverage, index) => `
-    
-                          <div class="coverage-detail-item">
-    
-                            <div class="coverage-detail-name">
-    
-                              ${escapeHtml(
-                                getCoverageName(
-                                  coverage.CoverageTypeID
-                                )
-                              )}
-    
-                            </div>
-    
-    
-                            <div class="coverage-detail-value">
-    
-                              ${formatNumber(
-                                coverage.CoverageAmount
-                              )}
-    
-                              ${escapeHtml(
-                                coverage.CoverageUnit === 'BAHT'
-                                  ? 'บาท'
-                                  : coverage.CoverageUnit || ''
-                              )}
-    
-                            </div>
-    
-                          </div>
-
+                        
                           ${renderCoverageUsageSection(
                             coverage,
                             index
