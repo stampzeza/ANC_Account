@@ -6766,6 +6766,7 @@ content="#0F4C5C"
     
     }
 
+
     function formatDateDisplay(value) {
     
       if (!value) {
@@ -6782,16 +6783,26 @@ content="#0F4C5C"
       }
     
     
-      return date.toLocaleDateString(
-        'th-TH-u-ca-buddhist',
-        {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric'
-        }
-      );
+      const day =
+        String(
+          date.getDate()
+        ).padStart(2, '0');
+    
+    
+      const month =
+        String(
+          date.getMonth() + 1
+        ).padStart(2, '0');
+    
+    
+      const year =
+        date.getFullYear() + 543;
+    
+    
+      return `${day}/${month}/${year}`;
     
     }
+
 
 
     /* =========================================
