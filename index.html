@@ -1901,6 +1901,192 @@ content="#0F4C5C"
     
       padding: 4px 20px 10px;
     }
+
+    /* =====================================
+       EVENTS / NOTIFICATION
+    ===================================== */
+    
+    .events-empty-card {
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 20px;
+    
+      padding: 34px 20px;
+    
+      text-align: center;
+    
+      margin-top: 20px;
+    
+    }
+    
+    
+    .events-empty-icon {
+    
+      font-size: 42px;
+    
+      margin-bottom: 14px;
+    
+    }
+    
+    
+    .events-empty-title {
+    
+      font-size: 17px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+      margin-bottom: 7px;
+    
+    }
+    
+    
+    .events-empty-text {
+    
+      font-size: 13px;
+    
+      color: #6b7280;
+    
+      line-height: 1.6;
+    
+    }
+    
+    
+    .events-list {
+    
+      display: flex;
+    
+      flex-direction: column;
+    
+      gap: 10px;
+    
+      margin-bottom: 20px;
+    
+    }
+    
+    
+    .event-card {
+    
+      display: flex;
+    
+      align-items: flex-start;
+    
+      gap: 12px;
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 18px;
+    
+      padding: 15px;
+    
+    }
+    
+    
+    .event-icon {
+    
+      width: 44px;
+      height: 44px;
+    
+      border-radius: 13px;
+    
+      display: flex;
+    
+      align-items: center;
+      justify-content: center;
+    
+      font-size: 20px;
+    
+      flex-shrink: 0;
+    
+    }
+    
+    
+    .event-high {
+    
+      background: #fef2f2;
+    
+    }
+    
+    
+    .event-medium {
+    
+      background: #fffbeb;
+    
+    }
+    
+    
+    .event-normal {
+    
+      background: #eff6ff;
+    
+    }
+    
+    
+    .event-content {
+    
+      flex: 1;
+    
+      min-width: 0;
+    
+    }
+    
+    
+    .event-title {
+    
+      font-size: 14px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+      line-height: 1.4;
+    
+    }
+    
+    
+    .event-description {
+    
+      margin-top: 4px;
+    
+      font-size: 12px;
+    
+      color: #6b7280;
+    
+      line-height: 1.6;
+    
+    }
+    
+    
+    .event-meta {
+    
+      display: flex;
+    
+      flex-wrap: wrap;
+    
+      gap: 8px;
+    
+      margin-top: 8px;
+    
+      font-size: 11px;
+    
+      color: #9ca3af;
+    
+    }
+    
+    
+    .event-remaining {
+    
+      font-weight: 700;
+    
+      color: #111827;
+    
+    }
     
   </style>
 
@@ -4650,22 +4836,38 @@ content="#0F4C5C"
         <!-- Events -->
 
         <section class="section">
-
+        
           <div class="section-title">
-
+        
             <span>
               🔔 สิ่งที่ต้องรู้
             </span>
-
+        
+        
+            ${
+              events.length
+        
+                ? `
+                  <span
+                    class="section-link"
+                    onclick="navigateTo('events')"
+                  >
+                    ดูทั้งหมด
+                  </span>
+                `
+        
+                : ''
+            }
+        
           </div>
-
-
+        
+        
           ${
             events.length
-
+        
               ? `
                 <div class="event-list">
-
+        
                   ${
                     events
                       .slice(0, 3)
@@ -4674,17 +4876,17 @@ content="#0F4C5C"
                       )
                       .join('')
                   }
-
+        
                 </div>
               `
-
+        
               : `
                 <div class="empty">
                   ตอนนี้ยังไม่มีรายการที่ต้องติดตาม
                 </div>
               `
           }
-
+        
         </section>
 
 
@@ -6200,6 +6402,408 @@ content="#0F4C5C"
 
       `;
 
+    }
+
+    function renderEventsPage() {
+
+      const events =
+        accountData?.events || [];
+    
+    
+      let html = `
+    
+        <div class="page">
+    
+    
+          <div class="page-header">
+    
+            <button
+              class="back-btn"
+              onclick="navigateTo('home')"
+            >
+              ←
+            </button>
+    
+    
+            <div>
+    
+              <div class="page-title">
+                สิ่งที่ต้องดู
+              </div>
+    
+              <div class="page-subtitle">
+                รายการสำคัญเกี่ยวกับการดูแลกรมธรรม์
+              </div>
+    
+            </div>
+    
+          </div>
+    
+    
+      `;
+    
+    
+      if (!events.length) {
+    
+        html += `
+    
+          <div class="events-empty-card">
+    
+            <div class="events-empty-icon">
+              ✅
+            </div>
+    
+            <div class="events-empty-title">
+              ตอนนี้ไม่มีรายการที่ต้องดู
+            </div>
+    
+            <div class="events-empty-text">
+              เมื่อมีรายการสำคัญ
+              จะแสดงไว้ที่หน้านี้
+            </div>
+    
+          </div>
+    
+        `;
+    
+      } else {
+    
+        html += `
+    
+          <div class="section-title">
+            รายการล่าสุด
+          </div>
+    
+          <div class="events-list">
+    
+        `;
+    
+    
+        events.forEach(event => {
+    
+          const priority =
+            String(
+              event.Priority || ''
+            ).toUpperCase();
+    
+    
+          const status =
+            String(
+              event.Status || ''
+            ).toUpperCase();
+    
+    
+          const remainingDays =
+            event.RemainingDays;
+    
+    
+          let icon = '🔔';
+          let iconClass = 'event-normal';
+    
+    
+          if (priority === 'HIGH') {
+    
+            icon = '🔴';
+            iconClass = 'event-high';
+    
+          } else if (priority === 'MEDIUM') {
+    
+            icon = '🟡';
+            iconClass = 'event-medium';
+    
+          } else {
+    
+            icon = '🔵';
+            iconClass = 'event-normal';
+    
+          }
+    
+    
+          let remainingText = '';
+    
+    
+          if (
+            remainingDays !== null &&
+            remainingDays !== undefined &&
+            remainingDays !== ''
+          ) {
+    
+            const days =
+              Number(remainingDays);
+    
+    
+            if (days < 0) {
+    
+              remainingText =
+                'เลยกำหนดแล้ว';
+    
+            } else if (days === 0) {
+    
+              remainingText =
+                'วันนี้';
+    
+            } else if (days === 1) {
+    
+              remainingText =
+                'อีก 1 วัน';
+    
+            } else {
+    
+              remainingText =
+                `อีก ${formatNumber(days)} วัน`;
+    
+            }
+    
+          }
+    
+    
+          const eventDate =
+            event.EventDate
+              ? formatDateDisplay(event.EventDate)
+              : '';
+    
+    
+          html += `
+    
+            <div class="event-card">
+    
+    
+              <div
+                class="
+                  event-icon
+                  ${iconClass}
+                "
+              >
+                ${icon}
+              </div>
+    
+    
+              <div class="event-content">
+    
+    
+                <div class="event-title">
+                  ${escapeHtml(
+                    event.Title || 'รายการสำคัญ'
+                  )}
+                </div>
+    
+    
+                <div class="event-description">
+                  ${escapeHtml(
+                    event.Description || ''
+                  )}
+                </div>
+    
+    
+                <div class="event-meta">
+    
+                  ${
+                    eventDate
+                      ? `
+                        <span>
+                          📅 ${escapeHtml(eventDate)}
+                        </span>
+                      `
+                      : ''
+                  }
+    
+    
+                  ${
+                    remainingText
+                      ? `
+                        <span class="event-remaining">
+                          ${escapeHtml(remainingText)}
+                        </span>
+                      `
+                      : ''
+                  }
+    
+                </div>
+    
+              </div>
+    
+            </div>
+    
+          `;
+    
+        });
+    
+    
+        html += `
+    
+          </div>
+    
+        `;
+    
+      }
+    
+    
+      html += `
+    
+          <div class="coverage-note">
+    
+            <div class="coverage-note-title">
+              💡 หมายเหตุ
+            </div>
+    
+            <div class="coverage-note-text">
+              รายการนี้แสดงเฉพาะเหตุการณ์
+              และข้อมูลที่ ANC Life Planning
+              มีอยู่ในระบบเท่านั้น
+            </div>
+    
+          </div>
+    
+    
+        </div>
+    
+      `;
+    
+    
+      return html;
+    }
+
+    function renderEventsPreview() {
+
+      const events =
+        accountData?.events || [];
+    
+    
+      if (!events.length) {
+    
+        return `
+    
+          <div class="events-preview-empty">
+    
+            ✅ ตอนนี้ไม่มีรายการที่ต้องดู
+    
+          </div>
+    
+        `;
+    
+      }
+    
+    
+      const preview =
+        events.slice(0, 3);
+    
+    
+      let html = `
+    
+        <div class="events-preview-list">
+    
+      `;
+    
+    
+      preview.forEach(event => {
+    
+        const priority =
+          String(
+            event.Priority || ''
+          ).toUpperCase();
+    
+    
+        let icon = '🔔';
+    
+    
+        if (priority === 'HIGH') {
+    
+          icon = '🔴';
+    
+        } else if (priority === 'MEDIUM') {
+    
+          icon = '🟡';
+    
+        }
+    
+    
+        const days =
+          event.RemainingDays;
+    
+    
+        let remainingText = '';
+    
+    
+        if (
+          days !== null &&
+          days !== undefined &&
+          days !== ''
+        ) {
+    
+          const d =
+            Number(days);
+    
+    
+          if (d === 0) {
+    
+            remainingText = 'วันนี้';
+    
+          } else if (d > 0) {
+    
+            remainingText =
+              `อีก ${formatNumber(d)} วัน`;
+    
+          } else {
+    
+            remainingText =
+              'เลยกำหนดแล้ว';
+    
+          }
+    
+        }
+    
+    
+        html += `
+    
+          <div class="event-preview-item">
+    
+            <div class="event-preview-icon">
+              ${icon}
+            </div>
+    
+            <div class="event-preview-content">
+    
+              <div class="event-preview-title">
+                ${escapeHtml(
+                  event.Title || 'รายการสำคัญ'
+                )}
+              </div>
+    
+              ${
+                remainingText
+                  ? `
+                    <div class="event-preview-days">
+                      ${escapeHtml(remainingText)}
+                    </div>
+                  `
+                  : ''
+              }
+    
+            </div>
+    
+          </div>
+    
+        `;
+    
+      });
+    
+    
+      html += `
+    
+        </div>
+    
+        <button
+          class="events-view-all"
+          onclick="navigateTo('events')"
+        >
+          ดูรายการทั้งหมด
+          <span>›</span>
+        </button>
+    
+      `;
+    
+    
+      return html;
     }
 
     function openCoverageDetail(
