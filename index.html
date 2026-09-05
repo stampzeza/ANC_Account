@@ -4157,7 +4157,10 @@ content="#0F4C5C"
       policy
     ) {
     
-      const waitingPeriods =
+      /*
+       * รวม Waiting Period จาก Rider ทุกตัว
+       */
+      const rawWaitingPeriods =
         (policy.riders || [])
           .flatMap(
             rider =>
@@ -4165,13 +4168,72 @@ content="#0F4C5C"
           );
     
     
-      if (!waitingPeriods.length) {
+      /*
+       * ป้องกันข้อมูลซ้ำ
+       */
+      const uniqueWaitingPeriods = [];
+      const seen = new Set();
+    
+    
+      rawWaitingPeriods.forEach(item => {
+    
+        /*
+         * ถ้ามี WaitingPeriodID
+         * ใช้ ID เป็นตัวหลัก
+         */
+        const waitingId =
+          String(
+            item.WaitingPeriodID || ''
+          ).trim();
+    
+    
+        /*
+         * กรณีไม่มี ID
+         * สร้าง Key จากข้อมูลสำคัญ
+         */
+        const fallbackKey =
+          [
+            item.WaitingType || '',
+            item.WaitingDays || '',
+            item.StartDate || '',
+            item.EndDate || ''
+          ].join('|');
+    
+    
+        const key =
+          waitingId
+            ? `ID:${waitingId}`
+            : `DATA:${fallbackKey}`;
+    
+    
+        /*
+         * เจอซ้ำ → ข้าม
+         */
+        if (seen.has(key)) {
+          return;
+        }
+    
+    
+        seen.add(key);
+    
+        uniqueWaitingPeriods.push(item);
+    
+      });
+    
+    
+      /*
+       * ไม่มี Waiting Period
+       */
+      if (!uniqueWaitingPeriods.length) {
     
         return '';
     
       }
     
     
+      /*
+       * Render
+       */
       return `
     
         <section class="detail-section">
@@ -4186,7 +4248,7 @@ content="#0F4C5C"
           <div class="waiting-list">
     
             ${
-              waitingPeriods
+              uniqueWaitingPeriods
                 .map(
                   renderWaitingPeriodItem
                 )
