@@ -2243,6 +2243,166 @@ content="#0F4C5C"
     
       margin-left: 2px;
     }
+
+    /* =====================================
+       COVERAGE USAGE
+    ===================================== */
+    
+    .coverage-usage-card {
+    
+      margin-top: 10px;
+    
+      padding: 14px;
+    
+      background: #f9fafb;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 14px;
+    
+    }
+    
+    
+    .coverage-usage-header {
+    
+      display: flex;
+    
+      align-items: center;
+    
+      gap: 9px;
+    
+      margin-bottom: 12px;
+    
+    }
+    
+    
+    .coverage-usage-icon {
+    
+      font-size: 18px;
+    
+    }
+    
+    
+    .coverage-usage-name {
+    
+      font-size: 13px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+    }
+    
+    
+    .usage-main-row {
+    
+      display: flex;
+    
+      justify-content: space-between;
+    
+      align-items: center;
+    
+      gap: 10px;
+    
+    }
+    
+    
+    .usage-label {
+    
+      font-size: 11px;
+    
+      color: #6b7280;
+    
+    }
+    
+    
+    .usage-remaining {
+    
+      font-size: 18px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+    }
+    
+    
+    .usage-progress {
+    
+      height: 8px;
+    
+      margin-top: 9px;
+    
+      border-radius: 999px;
+    
+      background: #e5e7eb;
+    
+      overflow: hidden;
+    
+    }
+    
+    
+    .usage-progress-bar {
+    
+      height: 100%;
+    
+      border-radius: 999px;
+    
+      background: #111827;
+    
+      transition: width 0.3s ease;
+    
+    }
+    
+    
+    .usage-detail-grid {
+    
+      display: grid;
+    
+      grid-template-columns: 1fr 1fr;
+    
+      gap: 10px;
+    
+      margin-top: 12px;
+    
+    }
+    
+    
+    .usage-small-label {
+    
+      font-size: 10px;
+    
+      color: #9ca3af;
+    
+    }
+    
+    
+    .usage-small-value {
+    
+      margin-top: 2px;
+    
+      font-size: 12px;
+    
+      font-weight: 700;
+    
+      color: #374151;
+    
+    }
+    
+    
+    .usage-reset {
+    
+      margin-top: 12px;
+    
+      padding-top: 10px;
+    
+      border-top: 1px solid #e5e7eb;
+    
+      font-size: 11px;
+    
+      color: #6b7280;
+    
+    }
     
   </style>
 
@@ -4522,6 +4682,10 @@ content="#0F4C5C"
                             </div>
     
                           </div>
+
+                          ${renderCoverageUsageSection(
+                            coverage
+                          )}
     
                         `
                       )
@@ -7461,6 +7625,338 @@ content="#0F4C5C"
     
     
       return html;
+    }
+
+    function renderCoverageUsageSection(
+      coverage
+    ) {
+    
+      if (!coverage) {
+        return '';
+      }
+    
+    
+      const limitType =
+        String(
+          coverage.LimitType || ''
+        ).toUpperCase();
+    
+    
+      const limitAmount =
+        Number(
+          coverage.LimitAmount || 0
+        );
+    
+    
+      const limitCount =
+        Number(
+          coverage.LimitCount || 0
+        );
+    
+    
+      const usedAmount =
+        Number(
+          coverage.UsedAmount || 0
+        );
+    
+    
+      const usedCount =
+        Number(
+          coverage.UsedCount || 0
+        );
+    
+    
+      const remainingAmount =
+        Number(
+          coverage.RemainingAmount || 0
+        );
+    
+    
+      const remainingCount =
+        Number(
+          coverage.RemainingCount || 0
+        );
+    
+    
+      /*
+       * ไม่มี Usage / Limit
+       */
+      if (
+        !limitAmount &&
+        !limitCount
+      ) {
+    
+        return '';
+    
+      }
+    
+    
+      /*
+       * Coverage Name
+       */
+      const name =
+        coverage.CoverageName ||
+        getCoverageName(
+          coverage.CoverageTypeID
+        ) ||
+        'ความคุ้มครอง';
+    
+    
+      const icon =
+        coverage.Icon ||
+        '🛡️';
+    
+    
+      /*
+       * =====================================
+       * AMOUNT
+       * =====================================
+       */
+    
+      let amountHtml = '';
+    
+    
+      if (
+        limitType === 'AMOUNT' ||
+        limitType === 'AMOUNT_AND_COUNT'
+      ) {
+    
+        const percentage =
+          limitAmount > 0
+            ? Math.max(
+                Math.min(
+                  (
+                    remainingAmount /
+                    limitAmount
+                  ) * 100,
+                  100
+                ),
+                0
+              )
+            : 0;
+    
+    
+        amountHtml = `
+    
+          <div class="usage-main-row">
+    
+            <div class="usage-label">
+              คงเหลือ
+            </div>
+    
+            <div class="usage-remaining">
+              ${formatNumber(
+                remainingAmount
+              )}
+              บาท
+            </div>
+    
+          </div>
+    
+    
+          <div class="usage-progress">
+    
+            <div
+              class="usage-progress-bar"
+              style="
+                width:${percentage.toFixed(2)}%;
+              "
+            ></div>
+    
+          </div>
+    
+    
+          <div class="usage-detail-grid">
+    
+            <div>
+    
+              <div class="usage-small-label">
+                วงเงิน
+              </div>
+    
+              <div class="usage-small-value">
+                ${formatNumber(
+                  limitAmount
+                )}
+                บาท
+              </div>
+    
+            </div>
+    
+    
+            <div>
+    
+              <div class="usage-small-label">
+                ใช้ไปแล้ว
+              </div>
+    
+              <div class="usage-small-value">
+                ${formatNumber(
+                  usedAmount
+                )}
+                บาท
+              </div>
+    
+            </div>
+    
+          </div>
+    
+        `;
+    
+      }
+    
+    
+      /*
+       * =====================================
+       * COUNT
+       * =====================================
+       */
+    
+      let countHtml = '';
+    
+    
+      if (
+        limitType === 'COUNT' ||
+        limitType === 'AMOUNT_AND_COUNT'
+      ) {
+    
+        const percentage =
+          limitCount > 0
+            ? Math.max(
+                Math.min(
+                  (
+                    remainingCount /
+                    limitCount
+                  ) * 100,
+                  100
+                ),
+                0
+              )
+            : 0;
+    
+    
+        countHtml = `
+    
+          <div class="usage-main-row">
+    
+            <div class="usage-label">
+              ครั้งคงเหลือ
+            </div>
+    
+            <div class="usage-remaining">
+              ${formatNumber(
+                remainingCount
+              )}
+              ครั้ง
+            </div>
+    
+          </div>
+    
+    
+          <div class="usage-progress">
+    
+            <div
+              class="usage-progress-bar"
+              style="
+                width:${percentage.toFixed(2)}%;
+              "
+            ></div>
+    
+          </div>
+    
+    
+          <div class="usage-detail-grid">
+    
+            <div>
+    
+              <div class="usage-small-label">
+                สิทธิ์ทั้งหมด
+              </div>
+    
+              <div class="usage-small-value">
+                ${formatNumber(
+                  limitCount
+                )}
+                ครั้ง
+              </div>
+    
+            </div>
+    
+    
+            <div>
+    
+              <div class="usage-small-label">
+                ใช้ไปแล้ว
+              </div>
+    
+              <div class="usage-small-value">
+                ${formatNumber(
+                  usedCount
+                )}
+                ครั้ง
+              </div>
+    
+            </div>
+    
+          </div>
+    
+        `;
+    
+      }
+    
+    
+      /*
+       * =====================================
+       * RESET
+       * =====================================
+       */
+    
+      const resetHtml =
+        coverage.ResetDate
+          ? `
+    
+            <div class="usage-reset">
+    
+              🔄 Reset วันที่
+              ${formatDateDisplay(
+                coverage.ResetDate
+              )}
+    
+            </div>
+    
+          `
+          : '';
+    
+    
+      return `
+    
+        <div class="coverage-usage-card">
+    
+          <div class="coverage-usage-header">
+    
+            <div class="coverage-usage-icon">
+              ${icon}
+            </div>
+    
+            <div class="coverage-usage-name">
+              ${escapeHtml(name)}
+            </div>
+    
+          </div>
+    
+    
+          ${amountHtml}
+    
+    
+          ${countHtml}
+    
+    
+          ${resetHtml}
+    
+        </div>
+    
+      `;
+    
     }
 
     function openCoverageDetail(
