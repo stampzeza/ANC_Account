@@ -2087,6 +2087,132 @@ content="#0F4C5C"
       color: #111827;
     
     }
+
+    /* =====================================
+       ANC INSIGHT
+    ===================================== */
+    
+    .insight-card {
+    
+      background: #ffffff;
+    
+      border: 1px solid #e5e7eb;
+    
+      border-radius: 18px;
+    
+      padding: 18px;
+    
+      box-shadow:
+        0 4px 14px rgba(0,0,0,0.04);
+    
+    }
+    
+    
+    .insight-title {
+    
+      font-size: 15px;
+    
+      font-weight: 800;
+    
+      color: #111827;
+    
+      line-height: 1.4;
+    
+    }
+    
+    
+    .insight-text {
+    
+      margin-top: 7px;
+    
+      font-size: 13px;
+    
+      color: #6b7280;
+    
+      line-height: 1.7;
+    
+    }
+    
+    
+    /* EVENT INSIGHT */
+    
+    .insight-event {
+    
+      border-left: 4px solid #f59e0b;
+    
+    }
+    
+    
+    /* SAVINGS */
+    
+    .insight-savings {
+    
+      border-left: 4px solid #16a34a;
+    
+    }
+    
+    
+    /* COVERAGE */
+    
+    .insight-coverage {
+    
+      border-left: 4px solid #2563eb;
+    
+    }
+    
+    
+    /* FAMILY */
+    
+    .insight-family {
+    
+      border-left: 4px solid #7c3aed;
+    
+    }
+    
+    
+    /* EMPTY */
+    
+    .insight-empty {
+    
+      border-left: 4px solid #9ca3af;
+    
+    }
+    
+    
+    /* ACTION */
+    
+    .insight-action {
+    
+      margin-top: 13px;
+    
+      padding-top: 11px;
+    
+      border-top: 1px solid #f0f0f0;
+    
+      display: flex;
+    
+      justify-content: space-between;
+    
+      align-items: center;
+    
+      font-size: 12px;
+    
+      font-weight: 700;
+    
+      color: #374151;
+    
+      cursor: pointer;
+    
+    }
+    
+    
+    .insight-action span {
+    
+      font-size: 20px;
+    
+      color: #9ca3af;
+    
+    }
     
   </style>
 
@@ -4893,55 +5019,337 @@ content="#0F4C5C"
         <!-- Insight -->
 
         <section class="section">
-
+        
           <div class="section-title">
-
+        
             <span>
               💡 ANC Insight
             </span>
-
+        
           </div>
-
-
-          <div class="insight-card">
-
-            <div class="insight-title">
-              ภาพรวมของคุณ
-            </div>
-
-
-            <div class="insight-text">
-
-              ${
-                activeCoverageCount > 0
-
-                  ? `
-                    ขณะนี้ ANC ดูแลความคุ้มครองให้คุณ
-                    ${activeCoverageCount}
-                    ด้าน
-
-                    <br><br>
-
-                    ระบบแสดงข้อมูลเฉพาะ
-                    กรมธรรม์ที่ ANC Life Planning
-                    เป็นผู้ดูแล
-                  `
-
-                  : `
-                    ขณะนี้ยังไม่มีข้อมูล
-                    ความคุ้มครองของคุณ
-                    ในระบบ ANC
-                  `
-              }
-
-            </div>
-
-          </div>
-
+        
+        
+          ${
+            (() => {
+        
+              const insight =
+                buildANCInsight();
+        
+        
+              return `
+        
+                <div class="
+                  insight-card
+                  insight-${insight.type}
+                ">
+        
+                  <div class="insight-title">
+                    ${escapeHtml(
+                      insight.title
+                    )}
+                  </div>
+        
+        
+                  <div class="insight-text">
+                    ${escapeHtml(
+                      insight.text
+                    )}
+                  </div>
+        
+        
+                  ${
+                    insight.type === 'event'
+        
+                      ? `
+                        <div
+                          class="insight-action"
+                          onclick="navigateTo('events')"
+                        >
+                          ดูรายละเอียด
+                          <span>›</span>
+                        </div>
+                      `
+        
+                      : ''
+                  }
+        
+                </div>
+        
+              `;
+        
+            })()
+          }
+        
         </section>
 
       `;
 
+    }
+
+    function buildANCInsight() {
+
+      const ownPolicies =
+        getOwnPolicies();
+    
+    
+      const coverage =
+        buildOwnCoverageSummary();
+    
+    
+      const coverageItems =
+        Object.values(
+          coverage || {}
+        );
+    
+    
+      const activeCoverageCount =
+        coverageItems
+          .filter(
+            item => item.HasCoverage
+          )
+          .length;
+    
+    
+      const lifeCoverage =
+        getCoverageAmount(
+          coverage,
+          'LIFE'
+        );
+    
+    
+      const healthCoverage =
+        getCoverageAmount(
+          coverage,
+          'HEALTH'
+        );
+    
+    
+      const savings =
+        ownPolicies.filter(
+          policy =>
+            policy.savings
+        );
+    
+    
+      const events =
+        accountData?.events || [];
+    
+    
+      const family =
+        accountData?.family || [];
+    
+    
+      /*
+       * =====================================
+       * PRIORITY 1
+       * มี Event ที่ต้องติดตาม
+       * =====================================
+       */
+    
+      if (events.length > 0) {
+    
+        const event =
+          events[0];
+    
+    
+        const title =
+          event.Title ||
+          'มีรายการที่ต้องติดตาม';
+    
+    
+        let remainingText = '';
+    
+    
+        if (
+          event.RemainingDays !== null &&
+          event.RemainingDays !== undefined &&
+          event.RemainingDays !== ''
+        ) {
+    
+          const days =
+            Number(event.RemainingDays);
+    
+    
+          if (days === 0) {
+    
+            remainingText =
+              'วันนี้';
+    
+          } else if (days > 0) {
+    
+            remainingText =
+              `อีก ${formatNumber(days)} วัน`;
+    
+          } else {
+    
+            remainingText =
+              'เลยกำหนดแล้ว';
+    
+          }
+    
+        }
+    
+    
+        return {
+    
+          type: 'event',
+    
+          title:
+            'มีรายการที่ควรติดตาม',
+    
+          text:
+            remainingText
+              ? `${title} (${remainingText})`
+              : title
+    
+        };
+    
+      }
+    
+    
+      /*
+       * =====================================
+       * PRIORITY 2
+       * มี Savings
+       * =====================================
+       */
+    
+      if (savings.length > 0) {
+    
+        const saving =
+          savings[0];
+    
+    
+        const progress =
+          saving.ProgressPercent !== undefined
+            ? Number(
+                saving.ProgressPercent
+              )
+            : 0;
+    
+    
+        const paymentTerm =
+          saving.PaymentTermYears ||
+          saving.MaturityTermYears ||
+          '';
+    
+    
+        return {
+    
+          type: 'savings',
+    
+          title:
+            'แผนสะสมทรัพย์ของคุณ',
+    
+          text:
+            paymentTerm
+              ? `กำลังอยู่ในแผนชำระเบี้ย ${paymentTerm} ปี`
+              : 'มีข้อมูลสะสมทรัพย์อยู่ในระบบ ANC'
+    
+        };
+    
+      }
+    
+    
+      /*
+       * =====================================
+       * PRIORITY 3
+       * มี Coverage
+       * =====================================
+       */
+    
+      if (
+        activeCoverageCount > 0
+      ) {
+    
+        let text =
+          `ขณะนี้ ANC ดูแลความคุ้มครองให้คุณ ${activeCoverageCount} ด้าน`;
+    
+    
+        if (
+          lifeCoverage > 0 &&
+          healthCoverage > 0
+        ) {
+    
+          text +=
+            ` มีทุนชีวิต ${formatNumber(lifeCoverage)} บาท และค่ารักษาพยาบาล ${formatNumber(healthCoverage)} บาท`;
+    
+        } else if (
+          lifeCoverage > 0
+        ) {
+    
+          text +=
+            ` มีทุนชีวิต ${formatNumber(lifeCoverage)} บาท`;
+    
+        } else if (
+          healthCoverage > 0
+        ) {
+    
+          text +=
+            ` มีค่ารักษาพยาบาล ${formatNumber(healthCoverage)} บาท`;
+    
+        }
+    
+    
+        return {
+    
+          type: 'coverage',
+    
+          title:
+            'ภาพรวมความคุ้มครองของคุณ',
+    
+          text:
+            text
+    
+        };
+    
+      }
+    
+    
+      /*
+       * =====================================
+       * PRIORITY 4
+       * มี Family
+       * =====================================
+       */
+    
+      if (
+        family.length > 0
+      ) {
+    
+        return {
+    
+          type: 'family',
+    
+          title:
+            'ครอบครัวของคุณ',
+    
+          text:
+            `มีสมาชิกครอบครัว ${family.length} คนในระบบ ANC`
+    
+        };
+    
+      }
+    
+    
+      /*
+       * =====================================
+       * DEFAULT
+       * =====================================
+       */
+    
+      return {
+    
+        type: 'empty',
+    
+        title:
+          'ANC Life Planning',
+    
+        text:
+          'ขณะนี้ยังมีข้อมูลไม่มากพอสำหรับสร้าง Insight เพิ่มเติม'
+    
+      };
+    
     }
 
 
