@@ -2798,6 +2798,8 @@ content="#0F4C5C"
 
     let accountData = null;
 
+    let lineProfile = null;
+
     let currentPage = 'home';
 
     let selectedPolicyId = null;
@@ -2862,6 +2864,30 @@ content="#0F4C5C"
           liff.login();
 
           return;
+        }
+
+        /* ================================
+           LINE PROFILE
+        ================================= */
+    
+        try {
+    
+          if (liff.isLoggedIn()) {
+    
+            lineProfile =
+              await liff.getProfile();
+    
+          }
+    
+        } catch (profileError) {
+    
+          console.warn(
+            'LINE profile error:',
+            profileError
+          );
+    
+          lineProfile = null;
+    
         }
 
 
@@ -2953,6 +2979,46 @@ content="#0F4C5C"
 
       }
 
+    }
+
+    function getLineProfileImage() {
+
+      if (
+        lineProfile &&
+        lineProfile.pictureUrl
+      ) {
+    
+        return lineProfile.pictureUrl;
+    
+      }
+    
+    
+      return '';
+    
+    }
+
+    function getLineDisplayName() {
+
+      if (
+        lineProfile &&
+        lineProfile.displayName
+      ) {
+    
+        return lineProfile.displayName;
+    
+      }
+    
+    
+      const customer =
+        accountData?.customer || {};
+    
+    
+      return (
+        customer.DisplayName ||
+        customer.FirstName ||
+        '-'
+      );
+    
     }
 
 
@@ -5151,13 +5217,13 @@ content="#0F4C5C"
         <div class="account-header">
 
           ${
-            customer.ProfileImageURL
+            getLineProfileImage()
 
               ? `
                 <img
                   class="profile-image"
                   src="${escapeHtml(
-                    customer.ProfileImageURL
+                    getLineProfileImage()
                   )}"
                   alt=""
                 >
@@ -5181,9 +5247,7 @@ content="#0F4C5C"
             <div class="display-name">
 
               ${escapeHtml(
-                customer.DisplayName ||
-                customer.FirstName ||
-                '-'
+                getLineDisplayName()
               )}
 
             </div>
@@ -6953,18 +7017,7 @@ content="#0F4C5C"
     
     
       const displayName =
-        customer.DisplayName ||
-        (
-          (customer.FirstName || '') +
-          (
-            customer.FirstName &&
-            customer.LastName
-              ? ' '
-              : ''
-          ) +
-          (customer.LastName || '')
-        ) ||
-        'ผู้ใช้งาน';
+        getLineDisplayName();
     
     
       const phone =
@@ -6984,8 +7037,7 @@ content="#0F4C5C"
     
     
       const profileImage =
-        customer.ProfileImageURL ||
-        '';
+        getLineProfileImage();
     
     
       return `
